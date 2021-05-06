@@ -8,6 +8,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
+      idAula: {
+        field:"idAula",
+        allowNull:false,
+        type: Sequelize.STRING,
+        refecences: {
+          model: "Aulas",
+          key:"id"
+        }
+      },
       idAluno: {
         field:"idAluno",
         allowNull:false,

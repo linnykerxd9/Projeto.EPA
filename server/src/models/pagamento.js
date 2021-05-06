@@ -11,11 +11,20 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Pagamento.belongsTo(models.Aula, {
+        foreignKey: "idAula",
+        targetKey:"id"
+      })
+      Pagamento.belongsTo(models.Status, {
+        foreignKey: "idStatus",
+        targetKey:"id"
+      })
     }
   };
   Pagamento.init({
     valor: DataTypes.INTEGER,
     metodoPagamento: DataTypes.STRING,
+    idAula:DataTypes.STRING,
     contaBancoReceber: DataTypes.STRING,
     contaBancoPagador: DataTypes.STRING,
     idStatus: DataTypes.INTEGER

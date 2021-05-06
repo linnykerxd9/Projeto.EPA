@@ -11,6 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Professor.hasMany(models.Agenda, {
+        foreignKey: "idProfessor",
+        sourceKey:"id"
+      })
+      Professor.hasMany(models.Localizacoes, {
+        foreignKey: "idProfessor",
+        sourceKey:"id"
+      })
+      Professor.hasMany(models.Aula, {
+        foreignKey: "idProfessor",
+        sourceKey:"id"
+      })
+      Professor.hasMany(models.Materiaprof, {
+        foreignKey: "idProfessor",
+        sourceKey:"id"
+      })
     }
   };
   Professor.init({
@@ -23,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     cidade: DataTypes.STRING,
     idade: DataTypes.STRING,
     estado: DataTypes.STRING,
-    rua / avenida: DataTypes.STRING,
+    rua: DataTypes.STRING,
     senha: DataTypes.STRING
   }, {
     sequelize,
