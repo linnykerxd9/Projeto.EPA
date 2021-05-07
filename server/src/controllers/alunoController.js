@@ -1,14 +1,19 @@
 const Aluno = require('../models').Aluno;
 exports.listAll = (req, res) => {
-    const status = {
-        status:"pendente"
-    }
-    res.send(status);
+    Aluno.findAll()
+    .then(Aluno => res.send(Aluno))
+    .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "status criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const {
+        id,email, nome_completo, telefone, cpf, bairro, cep, cidade, idade,sexo, estado, rua,
+        contaBanco, senha,saldo } = req.body;
+    
+        Aluno.create({
+        id,email, nome_completo, telefone, cpf,
+        bairro, cep, cidade, idade,sexo, estado, rua,
+        contaBanco, senha,saldo
+    })
+    .then(Aluno => res.send(Aluno))
+    .catch(err => res.send(err))
 }

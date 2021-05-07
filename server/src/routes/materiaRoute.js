@@ -1,6 +1,9 @@
 module.exports = app => {
-    app.route('/materia')
-        .get((req, res) => {
-        res.send("bem vindo a rota da materia")
-    })
+
+        const materiaController = require('../controllers/materiaController');
+    
+        app.route('/materia')
+            .get(materiaController.listAll)
+            .post(materiaController.createOne)
+    
 }

@@ -1,6 +1,7 @@
 module.exports = app => {
+    const alunoController = require('../controllers/alunoController');
+    
     app.route('/aluno')
-        .get((req, res) => {
-        res.send("bem vindo a rota de aluno")
-    })
+        .get(alunoController.listAll)
+        .post(alunoController.createOne)
 }

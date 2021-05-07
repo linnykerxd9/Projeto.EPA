@@ -1,6 +1,8 @@
 module.exports = app => {
+
+    const pagamentoController = require('../controllers/pagamentoController');
+
     app.route('/pagamento')
-        .get((req, res) => {
-        res.send("bem vindo a rota de pagamento")
-    })
+        .get(pagamentoController.listAll)
+        .post(pagamentoController.createOne)
 }

@@ -1,6 +1,7 @@
 module.exports = app => {
+    const doacaoController = require('../controllers/doacaoController');
+    
     app.route('/doacao')
-        .get((req, res) => {
-        res.send("bem vindo a rota de doacao")
-    })
+        .get(doacaoController.listAll)
+        .post(doacaoController.createOne)
 }

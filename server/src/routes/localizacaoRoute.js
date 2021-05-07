@@ -1,6 +1,7 @@
 module.exports = app => {
-    app.route('/localizacao')
-        .get((req, res) => {
-        res.send("bem vindo a rota de localizacao")
-    })
+    const localizacaoController = require('../controllers/localizacaoController');
+    
+        app.route('/localizacao')
+            .get(localizacaoController.listAll)
+            .post(localizacaoController.createOne)
 }

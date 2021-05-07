@@ -1,6 +1,7 @@
 module.exports = app => {
+    const   agendaController = require('../controllers/agendaController');
+    
     app.route('/agenda')
-        .get((req, res) => {
-        res.send("bem vindo a rota de agenda")
-    })
+        .get(agendaController.listAll)
+        .post(agendaController.createOne)
 }

@@ -1,14 +1,12 @@
 const Doacao = require('../models').Doacao;
 exports.listAll = (req, res) => {
-    const status = {
-        status:"pendente"
-    }
-    res.send(status);
+    Doacao.findAll()
+    .then(doacao => res.send(doacao))
+    .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "status criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const { id,idDoador,valor } = req.body;
+    Doacao.create({  id,idDoador,valor })
+    .then(doacao => res.send(doacao))
+    .catch(err => res.send(err))
 }

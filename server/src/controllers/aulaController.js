@@ -1,14 +1,12 @@
 const Aula = require('../models').Aula;
 exports.listAll = (req, res) => {
-    const status = {
-        status:"pendente"
-    }
-    res.send(status);
+    Aula.findAll()
+    .then(Aula => res.send(Aula))
+    .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "status criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const { id,horario,duracao,data,idMateria,idProfessor,idAluno } = req.body;
+    Aula.create({ id,horario,duracao,data,idMateria,idProfessor,idAluno })
+    .then(Aula => res.send(Aula))
+    .catch(err => res.send(err))
 }

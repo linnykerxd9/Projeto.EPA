@@ -1,14 +1,13 @@
 const Avaliacao = require('../models').Avaliacao;
+
 exports.listAll = (req, res) => {
-    const status = {
-        status:"pendente"
-    }
-    res.send(status);
+    Avaliacao.findAll()
+    .then(avaliacao => res.send(avaliacao))
+    .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "status criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const { id,idAula,idAluno,idProfessor,estrelas,comentario } = req.body;
+    Avaliacao.create({  id,idAula,idAluno,idProfessor,estrelas,comentario})
+    .then(avaliacao => res.send(avaliacao))
+    .catch(err => res.send(err))
 }

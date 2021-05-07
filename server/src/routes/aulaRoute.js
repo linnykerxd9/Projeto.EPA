@@ -1,6 +1,7 @@
 module.exports = app => {
+    const aulaController = require('../controllers/aulaController');
+    
     app.route('/aula')
-        .get((req, res) => {
-        res.send("bem vindo a rota de aula")
-    })
+        .get(aulaController.listAll)
+        .post(aulaController.createOne)
 }

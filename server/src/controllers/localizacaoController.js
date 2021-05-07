@@ -1,14 +1,12 @@
 const Localizacoes = require('../models').Localizacoes;
 exports.listAll = (req, res) => {
-    const status = {
-        status:"pendente"
-    }
-    res.send(status);
+    Localizacoes.findAll()
+    .then(localizacoes => res.send(localizacoes))
+    .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "status criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const { id,longitude,latitude,situacao,idProfessor } = req.body;
+    Localizacoes.create({  id,longitude,latitude,situacao,idProfessor })
+    .then(localizacoes => res.send(localizacoes))
+    .catch(err => res.send(err))
 }

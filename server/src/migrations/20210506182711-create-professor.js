@@ -32,6 +32,9 @@ module.exports = {
       idade: {
         type: Sequelize.STRING
       },
+      sexo:{
+        type: Sequelize.STRING
+      },
       estado: {
         type: Sequelize.STRING
       },

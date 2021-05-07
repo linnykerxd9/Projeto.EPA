@@ -1,14 +1,15 @@
 const Pagamento = require('../models').Pagamento;
 exports.listAll = (req, res) => {
-    const status = {
-        status:"pendente"
-    }
-    res.send(status);
+    Pagamento.findAll()
+        .then(pagamento => {
+            console.log(req.body);
+            res.send(pagamento)
+        })
+        .catch(err => { console.log(req.body);res.send(err) })
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "status criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const { id,valor,metodoPagamento,contaBancoReceber,contaBancoPagador,idAula,idStatus } = req.body;
+    Pagamento.create({  id,valor,metodoPagamento,contaBancoReceber,contaBancoPagador,idAula,idStatus })
+    .then(pagamento => res.send(pagamento))
+    .catch(err => res.send(err))
 }
