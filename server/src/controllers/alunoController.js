@@ -1,4 +1,4 @@
-
+const Aluno = require('../models').Aluno;
 exports.listAll = (req, res) => {
     const status = {
         status:"pendente"

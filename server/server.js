@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const agendamentoRoute = require('./src/routes/agendamentoRoute');
 const alunoRoute = require('./src/routes/alunoRoute');
 const aulaRoute = require('./src/routes/aulaRoute');
 const avaliacaoRoute = require('./src/routes/avaliacaoRoute');
@@ -20,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(bodyParser.json());
 
-agendamentoRoute(app);
+
 alunoRoute(app);
 aulaRoute(app);
 avaliacaoRoute(app);

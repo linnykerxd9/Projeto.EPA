@@ -1,3 +1,4 @@
+const Materia = require('../models').Materia;
 
 exports.listAll = (req, res) => {
     const status = {

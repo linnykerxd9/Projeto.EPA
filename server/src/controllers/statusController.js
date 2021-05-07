@@ -1,14 +1,13 @@
+const Status = require('../models').Status;
 
 exports.listAll = (req, res) => {
-    const status = {
-        status:"pendente"
-    }
-    res.send(status);
+    Status.findAll()
+    .then(status => res.send(status))
+    .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "status criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const { id ,descricao } = req.body;
+    Status.create({ id ,descricao })
+    .then(status => res.send(status))
+    .catch(err => res.send(err))
 }

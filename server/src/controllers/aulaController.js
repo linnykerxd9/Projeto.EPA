@@ -1,4 +1,4 @@
-
+const Aula = require('../models').Aula;
 exports.listAll = (req, res) => {
     const status = {
         status:"pendente"

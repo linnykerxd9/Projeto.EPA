@@ -4,7 +4,7 @@ module.exports = {
     await queryInterface.createTable('Doacaos', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         type: Sequelize.STRING
       },

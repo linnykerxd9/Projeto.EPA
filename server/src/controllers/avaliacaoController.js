@@ -1,4 +1,4 @@
-
+const Avaliacao = require('../models').Avaliacao;
 exports.listAll = (req, res) => {
     const status = {
         status:"pendente"

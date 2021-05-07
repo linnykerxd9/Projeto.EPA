@@ -1,4 +1,4 @@
-
+const Localizacoes = require('../models').Localizacoes;
 exports.listAll = (req, res) => {
     const status = {
         status:"pendente"

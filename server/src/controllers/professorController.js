@@ -1,14 +1,20 @@
+const Professor = require('../models').Professor;
 
 exports.listAll = (req, res) => {
-    const status = {
-        status:"jonas"
-    }
-    res.send(status);
+    Professor.findAll()
+    .then(professor => res.send(professor))
+    .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const response = {
-        message: "professor criado com sucesso",
-        data: req.body
-    }
-    res.send(response)
+    const {
+        id,email, nome_completo, telefone, cpf, bairro, cep, cidade, idade, estado, rua,
+        contaBanco, senha } = req.body;
+    
+    Professor.create({
+        id,email, nome_completo, telefone, cpf,
+        bairro, cep, cidade, idade, estado, rua,
+        contaBanco, senha
+    })
+    .then(professor => res.send(professor))
+    .catch(err => res.send(err))
 }

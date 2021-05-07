@@ -1,4 +1,4 @@
-
+const Agenda = require('../models').Agenda;
 exports.listAll = (req, res) => {
     const status = {
         status:"pendente"

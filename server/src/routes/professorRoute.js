@@ -1,7 +1,8 @@
 module.exports = app => {
-    
+
+    const professorController = require('../controllers/professorController');
+
     app.route('/professor')
-        .get((req, res) => {
-        res.send("Bem vindo a rota do professor")
-    })
+        .get(professorController.listAll)
+        .post(professorController.createOne)
 }

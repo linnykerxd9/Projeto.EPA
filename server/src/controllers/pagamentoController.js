@@ -1,4 +1,4 @@
-
+const Pagamento = require('../models').Pagamento;
 exports.listAll = (req, res) => {
     const status = {
         status:"pendente"

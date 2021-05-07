@@ -4,7 +4,7 @@ module.exports = {
     await queryInterface.createTable('Agendas', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
         references: {
-          models: "Professors",
+          model: "Professors",
           key:"id"
         }
       },

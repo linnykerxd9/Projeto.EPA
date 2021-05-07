@@ -1,4 +1,4 @@
-
+const Doacao = require('../models').Doacao;
 exports.listAll = (req, res) => {
     const status = {
         status:"pendente"
