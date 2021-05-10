@@ -1,10 +1,10 @@
 var index = 555;
 
 if (index == 5) {
-    consolelog("oii");
-}
+    consolelog("Aff");
+};
 
-Var idade = 18;
+var idade = 18;
 
 for(var i=0;i<idade;i++){
     console.log(i);
