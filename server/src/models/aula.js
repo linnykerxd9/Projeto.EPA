@@ -12,26 +12,26 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Aula.belongsTo(models.Materia, {
-        foreignKey: "idMateria",
-        targetKey:"id"
+        foreignKey:"idMateria",
+        targetKet:"id"
       })
       Aula.belongsTo(models.Professor, {
-        foreignKey: "idProfessor",
-        targetKey:"id"
+        foreignKey:"idProfessor",
+        targetKet:"id"
       })
       Aula.belongsTo(models.Aluno, {
-        foreignKey: "idAluno",
-        targetKey:"id"
+        foreignKey:"idAluno",
+        targetKet:"id"
       })
-      Aula.hasMany(models.Pagamento, {
-        targetKey: "idAula",
+      Aula.hasMany(models.Pagamento,{
+        foreignKey:"idAula",
         sourceKey:"id"
       })
     }
   };
   Aula.init({
     horario: DataTypes.STRING,
-    duracao: DataTypes.STRING,
+    tempoDuracao: DataTypes.STRING,
     data: DataTypes.DATEONLY,
     idMateria: DataTypes.STRING,
     idProfessor: DataTypes.STRING,

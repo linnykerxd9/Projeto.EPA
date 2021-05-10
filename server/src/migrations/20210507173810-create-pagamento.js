@@ -21,22 +21,22 @@ module.exports = {
         type: Sequelize.STRING
       },
       idAula: {
-        field: "idAula",
+        field:"idAula",
         allowNull: false,
         type: Sequelize.STRING,
-        references: {
-          model: "Aulas",
+        references:{
+          model:"Aulas",
           key:"id"
         }
       },
       idStatus: {
         field: "idStatus",
         allowNull:false,
-        type: Sequelize.INTEGER,
-      references: {
-        model:"Statuses",
-        key:"id"
-      }
+        type: Sequelize.STRING,
+        references: {
+          model: "Statuses",
+          key:"id"
+        }
       },
       createdAt: {
         allowNull: false,

@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     metodoPagamento: DataTypes.STRING,
     contaBancoReceber: DataTypes.STRING,
     contaBancoPagador: DataTypes.STRING,
-    idAula:DataTypes.STRING,
-    idStatus: DataTypes.INTEGER
+    idAula: DataTypes.STRING,
+    idStatus: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Pagamento',

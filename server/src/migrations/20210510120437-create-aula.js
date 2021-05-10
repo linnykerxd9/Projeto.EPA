@@ -6,41 +6,41 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       horario: {
         type: Sequelize.STRING
       },
-      duracao: {
+      tempoDuracao: {
         type: Sequelize.STRING
       },
       data: {
         type: Sequelize.DATEONLY
       },
       idMateria: {
-        field: "idMateria",
-        allowNull:false,
+        field:"idMateria",
+        allowNull: false,
         type: Sequelize.STRING,
-        references: {
-          model: "Materia",
+        references:{
+          model:"Materia",
           key:"id"
         }
       },
       idProfessor: {
         field:"idProfessor",
-        allowNull:false,
+        allowNull: false,
         type: Sequelize.STRING,
-        references: {
-          model: "Professors",
+        references:{
+          model:"Professors",
           key:"id"
         }
       },
       idAluno: {
-        field: "idAluno",
+        field:"idAluno",
         allowNull: false,
         type: Sequelize.STRING,
-        references: {
-          model: "Alunos",
+        references:{
+          model:"Alunos",
           key:"id"
         }
       },
