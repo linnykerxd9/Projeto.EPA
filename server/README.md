@@ -4,7 +4,7 @@ utilizamos o Sequelize como nosso banco de dados então após baixar ou clonar o
 
 
 
-### Erros:
+## Erros:
 
 ##### caso dê algum erro segue os links de todos os recursos usados no banco de dados
 
