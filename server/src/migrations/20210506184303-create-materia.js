@@ -17,9 +17,6 @@ module.exports = {
       escolaridade: {
         type: Sequelize.STRING
       },
-      especificacao: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

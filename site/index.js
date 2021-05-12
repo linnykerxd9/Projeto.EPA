@@ -25,3 +25,8 @@ if (nome == "professor") {
 var materia = ["Matemática", "Português", "Inglês", "História"];
 
 consolelog(materia);
+
+ultimoIdProfessor:integer,ultimoIdAluno:integer,ultimoIdAula:integer,ultimoIdAvaliacao:integer,
+ultimoIdDoacao:integer,ultimoIdLocalizacao:integer,ultimoIdMateria:integer,ultimoIdAgenda:integer,
+ultimoIdPagamento:integer,ultimoIdStatus:integer,ultimoIdMateriaProf:integer,ultimoIdPedidoDoacao:integer
+

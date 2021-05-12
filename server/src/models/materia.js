@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     nome: DataTypes.STRING,
     valorMateria: DataTypes.INTEGER,
     escolaridade: DataTypes.STRING,
-    especificacao: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Materia',
