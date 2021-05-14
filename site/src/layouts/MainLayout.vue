@@ -59,7 +59,7 @@ const linksData = [
     title: 'aluno',
     caption: 'github.com/quasarframework',
     icon: 'code',
-    link: '/#/cadastro/professor'
+    link: '/#/cadastro/aluno'
   },
 ];
 
