@@ -6,13 +6,13 @@ exports.listAll = (req, res) => {
 }
 exports.createOne = (req, res) => {
     const {
-        id,email, nome_completo, telefone, cpf, bairro, cep, cidade, dataNascimento,sexo, estado, rua,
-        contaBanco, senha,saldo } = req.body;
+        id,email, nome_completo, telefone, cpf, bairro, cep, cidade, dataNascimento,
+        sexo, estado, rua, senha } = req.body;
     
         Aluno.create({
         id,email, nome_completo, telefone, cpf,
-        bairro, cep, cidade, dataNascimento,sexo, estado, rua,
-        contaBanco, senha,saldo
+        bairro, cep, cidade, dataNascimento, sexo,
+        estado, rua, senha
     })
     .then(aluno => res.send(aluno))
     .catch(err => res.send(err))
