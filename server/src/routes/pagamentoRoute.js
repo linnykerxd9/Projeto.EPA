@@ -5,4 +5,7 @@ module.exports = app => {
     app.route('/pagamento')
         .get(pagamentoController.listAll)
         .post(pagamentoController.createOne)
+
+    app.route('/pagament/:id')
+    .get(pagamentoController.listOne)
 }

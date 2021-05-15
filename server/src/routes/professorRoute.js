@@ -5,4 +5,7 @@ module.exports = app => {
     app.route('/professor')
         .get(professorController.listAll)
         .post(professorController.createOne)
+
+    app.route('/professor/:id')
+    .get(professorController.listOne)
 }

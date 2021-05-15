@@ -13,3 +13,8 @@ exports.createOne = (req, res) => {
     .then(status => res.send(status))
     .catch(err => res.send(err))
 }
+exports.listOne = (req, res) => {
+	Status.findAll({where: {id:req.params.id}})
+	 .then(status => res.send(status))
+    .catch(err => res.send(err))
+}

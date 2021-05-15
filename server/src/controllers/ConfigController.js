@@ -27,3 +27,10 @@ exports.updateUltimoNumero = (req, res) => {
     .then(config => res.send(config))
     .catch(err => res.send(err))
 }
+
+exports.listOne = (req, res) => {
+    Config.findAll({where: {id:req.params.id}})
+    .then(config => res.send(config))
+    .catch(err => res.send(err))
+
+}

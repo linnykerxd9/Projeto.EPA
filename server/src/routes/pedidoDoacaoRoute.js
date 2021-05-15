@@ -5,4 +5,6 @@ module.exports = app => {
     app.route('/pedidoDoacao')
         .get(pedidoDoacaoController.listAll)
         .post(pedidoDoacaoController.createOne)
+    app.route('/pedidoDoacao/:id')
+        .get(pedidoDoacaoController.listOne)
 }

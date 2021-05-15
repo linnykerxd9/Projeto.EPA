@@ -232,7 +232,7 @@
 
 <script>
 export default {
-   name: 'CadastroAlunoComponent',
+   name: 'CadastroAlunoComponente',
   data () {
     return {
       options:["Masculino","Feminino","outros"],
@@ -268,10 +268,10 @@ export default {
         console.log(aluno);
         aluno.target.submit()
     }
+
   }
 }
 </script>
-
 <style>
 .container {
     width:60%;

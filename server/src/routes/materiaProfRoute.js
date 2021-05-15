@@ -1,8 +1,11 @@
 module.exports = app => {
 
-    const materiProf = require('../controllers/materiaProfController');
+    const materiaProf = require('../controllers/materiaProfController');
 
     app.route('/materiaProf')
-        .get(materiProf.listAll)
-        .post(materiProf.createOne)
+        .get(materiaProf.listAll)
+        .post(materiaProf.createOne)
+
+    app.route('/materiaProf/:id')
+       .get(materiaProf.listOne)
 }

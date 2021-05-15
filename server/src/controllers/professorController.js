@@ -18,3 +18,10 @@ exports.createOne = (req, res) => {
     .then(professor => res.send(professor))
     .catch(err => res.send(err))
 }
+
+exports.listOne = (req, res) => {
+    Professor.findAll({where: {id:req.params.id}})
+    .then(professor => res.send(professor))
+    .catch(err => res.send(err))
+
+}
