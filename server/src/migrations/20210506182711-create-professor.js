@@ -29,8 +29,8 @@ module.exports = {
       cidade: {
         type: Sequelize.STRING
       },
-      idade: {
-        type: Sequelize.STRING
+      dataNascimento: {
+        type: Sequelize.DATE
       },
       sexo:{
         type: Sequelize.STRING

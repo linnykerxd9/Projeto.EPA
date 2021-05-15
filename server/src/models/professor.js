@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     bairro: DataTypes.STRING,
     cep: DataTypes.STRING,
     cidade: DataTypes.STRING,
-    idade: DataTypes.STRING,
+    dataNascimento: DataTypes.DATE,
     sexo: DataTypes.STRING,
     estado: DataTypes.STRING,
     rua: DataTypes.STRING,

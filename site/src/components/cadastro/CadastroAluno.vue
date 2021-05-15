@@ -11,12 +11,11 @@
       action="http://localhost:3000/aluno"
       method="post"
     >
-
+    <div class="nomeCompleto">
      <q-input
-        class="nomeCompleto"
         filled
-        name="nomeCompleto"
-        v-model="aluno.nomeCompleto"
+        name="nome_completo"
+        v-model="aluno.nome_completo"
         label="Seu nome Completo *"
         hint="Name and surname"
         lazy-rules
@@ -24,6 +23,7 @@
         val => val && val.length > 0 || 'O campo não pode ser nulo',
         val => val && val.length < 75 || 'O nome não pode ter mais do que 75 caracteres']"
       />
+      </div>
       <div class="row">
         <div class="tamanho-input margin-input">
            <q-input
@@ -180,7 +180,7 @@
         </div>
         <div class="row">
         <div class="tamanho-input margin-input">
-      <q-input 
+      <q-input
           filled
           v-model="aluno.senha"
           label="Senha"
@@ -231,7 +231,6 @@
 </template>
 
 <script>
-
 export default {
    name: 'CadastroAlunoComponent',
   data () {
@@ -242,7 +241,7 @@ export default {
        confirmarSenha:null,
        aluno: {
         id:"ALU-009",
-        nomeCompleto:null,
+        nome_completo:null,
         cpf:null,
         dataNascimento: null,
         sexo:null,
@@ -270,7 +269,6 @@ export default {
         aluno.target.submit()
     }
   }
-
 }
 </script>
 
