@@ -4,4 +4,8 @@ module.exports = (app) => {
     app.route('/config/:id')
         .get(configController.listAll)
         .put(configController.updateUltimoNumero)
+
+    app.route('/config/:id/config')
+    .get(configController.listOne)
+
 }

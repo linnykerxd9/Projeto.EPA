@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Aula.init({
     horario: DataTypes.STRING,
-    tempoDuracao: DataTypes.STRING,
+    duracao: DataTypes.STRING,
     data: DataTypes.DATEONLY,
     idMateria: DataTypes.STRING,
     idProfessor: DataTypes.STRING,

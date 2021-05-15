@@ -11,7 +11,7 @@ module.exports = {
       horario: {
         type: Sequelize.STRING
       },
-      tempoDuracao: {
+      duracao: {
         type: Sequelize.STRING
       },
       data: {

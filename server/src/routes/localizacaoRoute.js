@@ -4,4 +4,7 @@ module.exports = app => {
         app.route('/localizacao')
             .get(localizacaoController.listAll)
             .post(localizacaoController.createOne)
+
+        app.route('/localizacao/:id')
+           .get(localizacaoController.listOne)
 }

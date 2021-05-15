@@ -1,4 +1,5 @@
 const Avaliacao = require('../models').Avaliacao;
+const Aula = require('../models').Aula;
 
 exports.listAll = (req, res) => {
     Avaliacao.findAll()
@@ -10,4 +11,9 @@ exports.createOne = (req, res) => {
     Avaliacao.create({  id,idAula,idAluno,idProfessor,estrelas,comentario})
     .then(avaliacao => res.send(avaliacao))
     .catch(err => res.send(err))
+}
+exports.listOne = (req, res) => {
+	Avaliacao.findAll({where: {id:req.params.id}})
+	.then(avaliacao => res.send(avaliacao))
+	.catch(err => res.send(err))
 }

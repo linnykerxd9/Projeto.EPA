@@ -4,4 +4,7 @@ module.exports = app => {
     app.route('/aluno')
         .get(alunoController.listAll)
         .post(alunoController.createOne)
+
+    app.route('/aluno/:id')
+      .get(alunoController.listOne)
 }
