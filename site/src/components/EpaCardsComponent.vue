@@ -29,8 +29,9 @@ export default {
 	border: 3px solid rgb(71, 106, 74);
 	margin-left: 50px;
 	width: 311px;
+  background-color: rgb(71, 106, 74);
 	height: 254px;
-	margin-right: 50px; 
+	margin-right: 50px;
 }
 .my-card{
   border-radius: 0px;

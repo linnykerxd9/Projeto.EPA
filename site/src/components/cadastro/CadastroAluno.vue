@@ -224,7 +224,7 @@
       </div>
 
       <div class="btnCadastro">
-         <q-btn label="Cadastrar" type="submit" color="primary"   />
+         <q-btn label="Cadastrar" type="submit" color="primary"  :loading="enviado" />
       </div>
      </q-form>
   </div>
@@ -239,6 +239,7 @@ export default {
        isPwd: true,
        confirmePwd:true,
        confirmarSenha:null,
+       enviado: false,
        aluno: {
         id:"ALU-009",
         nome_completo:null,
@@ -259,14 +260,26 @@ export default {
   },
   methods:{
     onSubmit(aluno) {
+    this.enviado=true;
+    aluno.target.submit();
+    if(aluno.target.submit() == true){
        this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
           message: 'Cadastro concluído com sucesso'
-        })
-        console.log(aluno);
-        aluno.target.submit()
+        }),
+        this.enviado=false;
+    }
+    else{
+       this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Falha ao cadastrar'
+        }),
+         this.enviado=false;
+    }
     }
 
   }
