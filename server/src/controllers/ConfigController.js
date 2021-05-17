@@ -1,10 +1,9 @@
 const Config = require('../models').Config
 
 exports.listAll = (req, res) => {
-    Config.findAll({where:{id:1}})
+    Config.findAll()
         .then(config => {
             res.send(config)
-            return config;
         })
     .catch(err => res.send(err))
 }
@@ -29,7 +28,7 @@ exports.updateUltimoNumero = (req, res) => {
 }
 
 exports.listOne = (req, res) => {
-    Config.findAll({where: {id:req.params.id}})
+    Config.findAll({where: {id:1}})
     .then(config => res.send(config))
     .catch(err => res.send(err))
 

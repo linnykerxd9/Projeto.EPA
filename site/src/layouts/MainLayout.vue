@@ -61,10 +61,6 @@ const linksData = [
     icon: 'code',
     link: '/#/cadastro/professor'
   },
-  {
-    title: 'cards',
-    link: '/#/cards',
-  }
 ];
 
 export default {
