@@ -1,33 +1,33 @@
 <template>
-<section>
-  <EpaBannerComponent titulo="Ensino por Amor" 
-                      descricao='"A educação exige os maiores cuidados, porque influi sobre toda a vida"' 
+<section id="sectionIndex">
+  <EpaBannerComponent titulo="Ensino por Amor"
+                      descricao='"A educação exige os maiores cuidados, porque influi sobre toda a vida"'
                       autor = "Sêneca"
                       style="background-image:url('img/lapis_azul.svg');">
   </EpaBannerComponent>
 <div class="container">
-<div class="row">
-    <div class="q-pa-sm text-subtitle2 text-h6 text-weight-bolder">
-    <p class="titulo">DAR AULA</p>
-    </div>
-
-    <div class="q-pa-sm text-subtitle2 text-h6 text-weight-bolder">
-    <p class="titulo">ESTUDAR</p>
-    </div>
-  </div>
-
   <div class="row">
-   	<div>
+   	<div id="divPaiEstudar">
+    <div class="q-pa-sm text-subtitle2 text-h6 text-weight-bolder divTitulo">
+    <p class="titulo">ES<span class="traco">TUD</span>AR</p>
+    </div>
    	<EpaCardsComponent
   	imagem="img/pencil-918449_1920.png"
   	descricao="Encontre a disciplima que você procura e um professor que lhe agrader perto de você"
+    nomeBtn="Estudar"
+    link="cadastro/aluno"
   ></EpaCardsComponent>
   	</div>
 
-  	<div>
+  	<div id="divPaiDarAula">
+      <div class="q-pa-sm text-subtitle2 text-h6 text-weight-bolder">
+    <p class="titulo">DA<span class="traco">R AU</span>LA</p>
+    </div>
   	<EpaCardsComponent
   	imagem="img/element5-digital-OyCl7Y4y0Bk-unsplash.png"
   	descricao="Dê aulas perto de casa ou do trabalho, encontrando alunos nas redondezas "
+    nomeBtn="Dar Aulas"
+    link="cadastro/professor"
   ></EpaCardsComponent>
   	</div>
   </div>
@@ -36,7 +36,7 @@
   <div class="divBanner">
   <div id="banner" class="container">
   <div class="text-h6 tituloDivBanner">
-  <p> AGENDE SUA AULA PELO CHAT</p>
+  <p> AGENDE<span class="traco"> SUA AULA</span> PELO CHAT</p>
   </div>
   <div class="row">
   <div id="celular">
@@ -67,7 +67,7 @@
   import EpaBannerComponent from '../components/EpaBannerComponent.vue'
 export default {
   name: 'PageIndex',
-  components: {EpaCardsComponent, EpaBannerComponent}, 
+  components: {EpaCardsComponent, EpaBannerComponent},
     data () {
     return {}
   },
@@ -81,22 +81,27 @@ export default {
   background-size: 100% 100%;
   padding-bottom: 8%;
   }
-.container {
+#sectionIndex div.container {
   width:80%;
   margin-left: 10%;
   margin-bottom: 5%;
 }
-.row {
-  Justify-content: space-around;
+#sectionIndex div.row {
+  Justify-content: center;
 }
 .titulo {
-  font-family: Arial;
+  font-family: Georgia;
+  display: flex;
+  justify-content: center;
+  font-size:17px;
 }
 .tituloDivBanner {
-display: flex;
-justify-content: center;
-padding-top: 6%;
-padding-bottom: 3%;
+  display: flex;
+  justify-content: center;
+  padding-top: 6%;
+  padding-bottom: 3%;
+  font-family: Georgia;
+  font-weight: bold;
 }
 #celular {
   width: 250px;
@@ -115,5 +120,8 @@ div.divBanner {
   Background-color: lightgrey;
   padding-top: 5%;
   padding-bottom: 1%;
+}
+#divPaiDarAula,#divPaiEstudar{
+  margin-top:2%;
 }
 </style>
