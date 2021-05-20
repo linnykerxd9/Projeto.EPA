@@ -1,5 +1,10 @@
 <template>
 <section>
+  <EpaBannerComponent titulo="Ensino por Amor" 
+                      descricao='"A educação exige os maiores cuidados, porque influi sobre toda a vida"' 
+                      autor = "Sêneca"
+                      style="background-image:url('img/lapis_azul.svg');">
+  </EpaBannerComponent>
 <div class="container">
 <div class="row">
     <div class="q-pa-sm text-subtitle2 text-h6 text-weight-bolder">
@@ -59,10 +64,11 @@
 
 <script>
 	import EpaCardsComponent from '../components/EpaCardsComponent.vue'
+  import EpaBannerComponent from '../components/EpaBannerComponent.vue'
 export default {
   name: 'PageIndex',
-  components: {EpaCardsComponent},
-  data () {
+  components: {EpaCardsComponent, EpaBannerComponent}, 
+    data () {
     return {}
   },
 }
