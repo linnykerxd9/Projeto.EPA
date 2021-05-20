@@ -1,8 +1,15 @@
 <template>
+<section id="sectionCadastroAluno">
+  <div class="EpaBanner">
+      <EpaBannerComponent
+            titulo="Estudar"
+            descricao="Faça seu cadastro e marque sua aula"
+            style="background-image:url('img/mesa_estudos.png'); background-size:100% 100%"
+      ></EpaBannerComponent>
+    </div>
   <div class="container">
-
     <div class="titulo">
-    <h5> Dados Pessoais</h5>
+    <h5>Dados Pessoais</h5>
     </div>
 
      <q-form
@@ -228,11 +235,14 @@
       </div>
      </q-form>
   </div>
+</section>
 </template>
 
 <script>
+import EpaBannerComponent from '../EpaBannerComponent'
 export default {
    name: 'CadastroAlunoComponente',
+   components:{EpaBannerComponent},
   data () {
     return {
       options:["Masculino","Feminino","outros"],
@@ -286,15 +296,18 @@ export default {
 }
 </script>
 <style>
-.container {
+.q-page-container{
+  padding-top:0!important;
+}
+#sectionCadastroAluno .container {
     width:60%;
     margin-left:20%;
     margin-right:20%;
 }
-.titulo{
+#sectionCadastroAluno .titulo{
   border-bottom:1px solid grey;
 }
-.titulo h5{
+#sectionCadastroAluno .titulo h5{
     margin-bottom:0;
     padding-bottom: 12px;
   }
@@ -302,16 +315,16 @@ export default {
   width:84%;
   margin-top:43px;
 }
-.row{
+#sectionCadastroAluno .row{
   display:flex;
 }
-.margin-input{
+#sectionCadastroAluno .margin-input{
   margin-right:50px;
 }
-.tamanho-input{
+#sectionCadastroAluno .tamanho-input{
   width:40%;
 }
-.btnCadastro{
+#sectionCadastroAluno .btnCadastro{
   display:flex;
   justify-content: center;
   margin-top:5%;

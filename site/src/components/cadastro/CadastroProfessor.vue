@@ -1,6 +1,13 @@
 <template>
+<section id="sectionCadastroProfessor">
+  <div class="EpaBanner">
+      <EpaBannerComponent
+            titulo="Dar Aula"
+            descricao="Faça seu cadastro e começe a dar aulas"
+            style="background-image:url('img/pencil-1037609_1920.png'); background-size:100% 100%"
+      ></EpaBannerComponent>
+    </div>
   <div class="container">
-
     <div class="titulo">
     <h5> Dados Pessoais</h5>
     </div>
@@ -228,11 +235,14 @@
       </div>
      </q-form>
   </div>
+</section>
 </template>
 
 <script>
+import EpaBannerComponent from '../EpaBannerComponent.vue'
 export default {
    name: 'CadastroprofessorComponent',
+   components: {EpaBannerComponent},
   data () {
     return {
       options:["Masculino","Feminino","outros"],
@@ -273,32 +283,35 @@ export default {
 </script>
 
 <style>
-.container {
+.q-page-container{
+  padding-top:0!important;
+}
+#sectionCadastroProfessor .container {
     width:60%;
     margin-left:20%;
     margin-right:20%;
 }
-.titulo{
+#sectionCadastroProfessor .titulo{
   border-bottom:1px solid grey;
 }
-.titulo h5{
+#sectionCadastroProfessor .titulo h5{
     margin-bottom:0;
     padding-bottom: 12px;
   }
-.nomeCompleto,.email{
+#sectionCadastroProfessor .nomeCompleto,#sectionCadastroProfessor .email{
   width:84%;
   margin-top:43px;
 }
-.row{
+#sectionCadastroProfessor .row{
   display:flex;
 }
-.margin-input{
+#sectionCadastroProfessor .margin-input{
   margin-right:50px;
 }
-.tamanho-input{
+#sectionCadastroProfessor .tamanho-input{
   width:40%;
 }
-.btnCadastro{
+#sectionCadastroProfessor .btnCadastro{
   display:flex;
   justify-content: center;
   margin-top:5%;
