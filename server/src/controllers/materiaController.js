@@ -11,3 +11,18 @@ exports.createOne = (req, res) => {
     .then(materia => res.send(materia))
     .catch(err => res.send(err))
 }
+exports.listOne = (req, res) => {
+	Materia.findAll({where: {id:req.params.id}})
+	.then(materia => res.send(materia))
+	.catch(err => res.send(err))
+}
+exports.updateOne = (req, res) => {
+  const{nome,ValorMateria,escolaridade} = req.body;
+  Materia.update({nome,ValorMateria,escolaridade},{where:{id:req.params.id}})
+  .then(materia => {
+  	res.json({
+  		message: "Matéria atualizada"
+  	})
+  })
+  .catch(err => res.send(err))
+}

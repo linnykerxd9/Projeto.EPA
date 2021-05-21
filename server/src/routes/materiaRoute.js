@@ -5,5 +5,9 @@ module.exports = app => {
         app.route('/materia')
             .get(materiaController.listAll)
             .post(materiaController.createOne)
+
+        app.route('/materia/:id')
+        .get(materiaController.listOne)
+        .put(materiaController.updateOne)
     
 }
