@@ -8,4 +8,5 @@ module.exports = app => {
 
     app.route('/status/:id')
        .get(statusController.listOne)
+       
 }

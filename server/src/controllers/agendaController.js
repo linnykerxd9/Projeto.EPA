@@ -19,3 +19,11 @@ exports.listOne = (req, res) => {
 	.then(Agenda => res.send(Agenda))
 	.catch(err => res.send(err))
 }
+
+exports.updateOne = (req, res) => {
+    const { descricao, titulo, dataAula} = req.body
+    Agenda.update({descricao, titulo, dataAula}, 
+    {where: {id:req.params.id}})
+    .then(Agenda => res.send(Agenda))
+    .then(Agenda => res.send(Agenda))
+}

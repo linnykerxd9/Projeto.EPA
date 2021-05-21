@@ -25,3 +25,15 @@ exports.listOne = (req, res) => {
     .catch(err => res.send(err))
 
 }
+
+exports.updateOne = (req, res) => {
+    const{email, nome_completo, telefone, cpf,
+        bairro, cep, cidade, idade,sexo, estado, rua,
+        contaBanco, senha} = req.body
+   Professor.update({email, nome_completo, telefone, cpf, 
+    bairro, cep, cidade, idade,sexo, estado, rua, contaBanco, 
+    senha},{where:{id:req.params.id}})
+   .then(professor => res.send(professor))
+   .catch(err => res.send(err))
+
+}

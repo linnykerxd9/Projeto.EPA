@@ -28,3 +28,18 @@ exports.listOne = (req, res) => {
   .catch(err => {res.send(err)})
 
 }
+
+exports.updateOne = (req, res) => {
+    const {
+        email, nome_completo, telefone, cpf, bairro, cep, cidade, idade,sexo, estado, rua,
+        contaBanco, senha,saldo } = req.body
+    Aluno.update({email,nome_completo, telefone, cpf, bairro, cep, cidade, idade,sexo, estado, rua,
+        contaBanco, senha,saldo}, {where: {id: req.params.id}})
+    .then(Aluno => {
+        res.json({
+            message: "Dados do Aluno atualizados com sucesso"
+        })
+    })
+    .catch(err => {res.send(err)})
+
+}

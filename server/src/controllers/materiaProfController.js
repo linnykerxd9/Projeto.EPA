@@ -18,3 +18,4 @@ exports.listOne = (req, res) => {
    .then(materiaProf => res.send(materiaProf))
    .catch(err => res.send(err))
 }
+
