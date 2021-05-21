@@ -15,8 +15,6 @@
      <q-form
       @submit="onSubmit"
       class="q-gutter-md"
-      action="http://localhost:3000/professor"
-      method="post"
     >
     <div class="nomeCompleto">
      <q-input
@@ -211,13 +209,11 @@
         <div class="tamanho-input">
         <q-input
           filled
-          v-model="professor.id"
-          name="id"
+          v-model="confirmarSenha"
            :type="confirmePwd ? 'password' : 'text'"
           label="Confirmar Senha"
-          lazy-rules
-          :rules="[
-          val => val && val.length > 0 || 'O campo não pode ser nulo']"
+          error-message="As senhas não são iguais"
+          :error="!isValid()"
         >
         <template v-slot:append>
           <q-icon
@@ -231,7 +227,7 @@
       </div>
 
       <div class="btnCadastro">
-         <q-btn label="Cadastrar" type="submit" color="primary"   />
+         <q-btn label="Cadastrar" type="submit" color="primary" :loading="enviando"  />
       </div>
      </q-form>
   </div>
@@ -240,6 +236,7 @@
 
 <script>
 import EpaBannerComponent from '../EpaBannerComponent.vue'
+import { server } from 'boot/axios'
 export default {
    name: 'CadastroprofessorComponent',
    components: {EpaBannerComponent},
@@ -249,36 +246,59 @@ export default {
        isPwd: true,
        confirmePwd:true,
        confirmarSenha:null,
+       enviando: false,
        professor: {
-        id:"ALU-009",
-        nome_completo:null,
-        cpf:null,
-        dataNascimento: null,
-        sexo:null,
-        rua:null,
-        numero:null,
-        bairro:null,
-        cidade:null,
-        estado:null,
-        cep:null,
-        telefone:null,
-        email:null,
-        senha:null
+          id:null,
+          nome_completo:null,
+          cpf:null,
+          dataNascimento: null,
+          sexo:null,
+          rua:null,
+          numero:null,
+          bairro:null,
+          cidade:null,
+          estado:null,
+          cep:null,
+          telefone:null,
+          email:null,
+          senha:null
        }
     }
   },
-  methods:{
-    onSubmit(professor) {
-       this.$q.notify({
+methods:{
+  onSubmit() {
+    this.enviando=true;
+    if(this.confirmarSenha != this.professor.senha){
+      this.enviando=false;
+      return;
+    };
+   server.post('professor',this.professor)
+      .then((response) => {
+        console.log(response);
+        if(response.status == 200){
+          this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
           message: 'Cadastro concluído com sucesso'
-        })
-        console.log(professor);
-        professor.target.submit()
+        }),
+        this.enviando=false;
+        }
+      })
+      .catch(() => {
+        this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Falha ao cadastrar'
+        }),
+         this.enviando=false;
+      })
+    },
+    isValid () {
+      return this.confirmarSenha == this.professor.senha
     }
-  }
+  },
 }
 </script>
 

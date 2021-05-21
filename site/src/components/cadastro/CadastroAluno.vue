@@ -73,7 +73,8 @@
       </div>
       <div class="tamanho-input">
         <label >Sexo</label>
-      <q-select filled  name="sexo" v-model="aluno.sexo" :options="options"/>
+      <q-select filled  name="sexo" v-model="aluno.sexo" :options="options" label="escolha"
+                :rules="[val => val && val.length > 0 || 'O campo não pode ser nulo']"/>
       </div>
       <div class="titulo">
         <h5>Endereço</h5>
@@ -236,23 +237,23 @@
 
 <script>
 import EpaBannerComponent from '../EpaBannerComponent'
-import { api } from 'boot/axios'
+import { server } from 'boot/axios'
 export default {
    name: 'CadastroAlunoComponente',
    components:{EpaBannerComponent},
   data () {
     return {
       options:["Masculino","Feminino","outros"],
-       isPwd: true,
-       confirmePwd:true,
-       confirmarSenha:null,
-       enviando: false,
-       aluno: {
-        id:"ALU-4449",
+      isPwd: true,
+      confirmePwd:true,
+      confirmarSenha:null,
+      enviando: false,
+      aluno: {
+        id:null,
         nome_completo:null,
         cpf:null,
         dataNascimento: null,
-        sexo:"escolha",
+        sexo:null,
         rua:null,
         numero:null,
         bairro:null,
@@ -268,41 +269,31 @@ export default {
 methods:{
   onSubmit() {
     this.enviando=true;
-
     if(this.confirmarSenha != this.aluno.senha){
       this.enviando=false;
       return;
     };
-   api.get('aluno')
+   server.post('aluno',this.aluno)
       .then((response) => {
-        console.log(response)
-      })
-      .catch(() => {
-        this.$q.notify({
-          color: 'negative',
-          position: 'top',
-          message: 'Loading failed',
-          icon: 'report_problem'
-        })
-      })
-    /*if(aluno.target.submit() == true){
-       this.$q.notify({
+        if(response.status == 200){
+          this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
           message: 'Cadastro concluído com sucesso'
         }),
         this.enviando=false;
-    }
-    else{
-       this.$q.notify({
+        }
+      })
+      .catch(() => {
+        this.$q.notify({
           color: 'red-5',
           textColor: 'white',
           icon: 'warning',
           message: 'Falha ao cadastrar'
         }),
          this.enviando=false;
-    }*/
+      })
     },
     isValid () {
       return this.confirmarSenha == this.aluno.senha
@@ -327,7 +318,7 @@ methods:{
     margin-bottom:0;
     padding-bottom: 12px;
   }
-.nomeCompleto,.email{
+#sectionCadastroProfessor .nomeCompleto,.email{
   width:84%;
   margin-top:43px;
 }

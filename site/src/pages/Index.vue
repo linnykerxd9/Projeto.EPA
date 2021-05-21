@@ -74,7 +74,10 @@ export default {
 }
 </script>
 <style>
-#banner{
+.q-page-container{
+  padding-top:0!important;
+}
+#sectionIndex #banner{
   background-image:url('../../public/img/quadro_negro.png');
   color: white;
   background-repeat: no-repeat;
@@ -89,13 +92,13 @@ export default {
 #sectionIndex div.row {
   Justify-content: center;
 }
-.titulo {
+#sectionIndex .titulo {
   font-family: Georgia;
   display: flex;
   justify-content: center;
   font-size:17px;
 }
-.tituloDivBanner {
+#sectionIndex .tituloDivBanner {
   display: flex;
   justify-content: center;
   padding-top: 6%;
@@ -103,25 +106,25 @@ export default {
   font-family: Georgia;
   font-weight: bold;
 }
-#celular {
+#sectionIndex #celular {
   width: 250px;
   }
-#cadeado {
+#sectionIndex #cadeado {
   width: 250px;
   padding-top: 30px;
   }
-div#banner .row {
+#sectionIndex div#banner .row {
   justify-content: space-evenly;
 }
-#celular img,#cadeado img {
+#sectionIndex #celular img,#cadeado img {
   margin-bottom: 5%;
 }
-div.divBanner {
+#sectionIndex div.divBanner {
   Background-color: lightgrey;
   padding-top: 5%;
   padding-bottom: 1%;
 }
-#divPaiDarAula,#divPaiEstudar{
+#sectionIndex #divPaiDarAula,#divPaiEstudar{
   margin-top:2%;
 }
 </style>
