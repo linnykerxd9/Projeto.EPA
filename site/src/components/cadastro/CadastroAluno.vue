@@ -15,8 +15,6 @@
      <q-form
       @submit="onSubmit"
       class="q-gutter-md"
-      action="http://localhost:3000/aluno"
-      method="post"
     >
     <div class="nomeCompleto">
      <q-input
@@ -211,13 +209,11 @@
         <div class="tamanho-input">
         <q-input
           filled
-          v-model="aluno.id"
-          name="id"
-           :type="confirmePwd ? 'password' : 'text'"
+          v-model="confirmarSenha"
+          :type="confirmePwd ? 'password' : 'text'"
           label="Confirmar Senha"
-          lazy-rules
-          :rules="[
-          val => val && val.length > 0 || 'O campo não pode ser nulo']"
+          error-message="As senhas não são iguais"
+          :error="!isValid()"
         >
         <template v-slot:append>
           <q-icon
@@ -231,7 +227,7 @@
       </div>
 
       <div class="btnCadastro">
-         <q-btn label="Cadastrar" type="submit" color="primary"  :loading="enviado" />
+         <q-btn label="Cadastrar" type="submit" color="primary"  :loading="enviando" />
       </div>
      </q-form>
   </div>
@@ -240,6 +236,7 @@
 
 <script>
 import EpaBannerComponent from '../EpaBannerComponent'
+import { api } from 'boot/axios'
 export default {
    name: 'CadastroAlunoComponente',
    components:{EpaBannerComponent},
@@ -249,13 +246,13 @@ export default {
        isPwd: true,
        confirmePwd:true,
        confirmarSenha:null,
-       enviado: false,
+       enviando: false,
        aluno: {
-        id:"ALU-009",
+        id:"ALU-4449",
         nome_completo:null,
         cpf:null,
         dataNascimento: null,
-        sexo:null,
+        sexo:"escolha",
         rua:null,
         numero:null,
         bairro:null,
@@ -268,18 +265,34 @@ export default {
        }
     }
   },
-  methods:{
-    onSubmit(aluno) {
-    this.enviado=true;
-    aluno.target.submit();
-    if(aluno.target.submit() == true){
+methods:{
+  onSubmit() {
+    this.enviando=true;
+
+    if(this.confirmarSenha != this.aluno.senha){
+      this.enviando=false;
+      return;
+    };
+   api.get('aluno')
+      .then((response) => {
+        console.log(response)
+      })
+      .catch(() => {
+        this.$q.notify({
+          color: 'negative',
+          position: 'top',
+          message: 'Loading failed',
+          icon: 'report_problem'
+        })
+      })
+    /*if(aluno.target.submit() == true){
        this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
           message: 'Cadastro concluído com sucesso'
         }),
-        this.enviado=false;
+        this.enviando=false;
     }
     else{
        this.$q.notify({
@@ -288,11 +301,14 @@ export default {
           icon: 'warning',
           message: 'Falha ao cadastrar'
         }),
-         this.enviado=false;
+         this.enviando=false;
+    }*/
+    },
+    isValid () {
+      return this.confirmarSenha == this.aluno.senha
     }
-    }
+  },
 
-  }
 }
 </script>
 <style>
