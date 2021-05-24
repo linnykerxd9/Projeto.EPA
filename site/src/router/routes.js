@@ -21,7 +21,16 @@ const routes = [
       },
     ]
   },
- 
+  {
+    path: '/user',
+    component: () => import('../layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '/user/mapa',
+        component: () => import('../pages/EpaMapa.vue')
+      }
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {
