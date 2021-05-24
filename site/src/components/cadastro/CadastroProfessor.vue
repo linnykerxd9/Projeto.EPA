@@ -1,6 +1,13 @@
 <template>
+<section id="sectionCadastroProfessor">
+  <div class="EpaBanner">
+      <EpaBannerComponent
+            titulo="Dar Aula"
+            descricao="Faça seu cadastro e começe a dar aulas"
+            style="background-image:url('img/pencil-1037609_1920.png'); background-size:100% 100%"
+      ></EpaBannerComponent>
+    </div>
   <div class="container">
-
     <div class="titulo">
     <h5> Dados Pessoais</h5>
     </div>
@@ -8,8 +15,6 @@
      <q-form
       @submit="onSubmit"
       class="q-gutter-md"
-      action="http://localhost:3000/professor"
-      method="post"
     >
     <div class="nomeCompleto">
      <q-input
@@ -204,13 +209,11 @@
         <div class="tamanho-input">
         <q-input
           filled
-          v-model="professor.id"
-          name="id"
+          v-model="confirmarSenha"
            :type="confirmePwd ? 'password' : 'text'"
           label="Confirmar Senha"
-          lazy-rules
-          :rules="[
-          val => val && val.length > 0 || 'O campo não pode ser nulo']"
+          error-message="As senhas não são iguais"
+          :error="!isValid()"
         >
         <template v-slot:append>
           <q-icon
@@ -224,81 +227,111 @@
       </div>
 
       <div class="btnCadastro">
-         <q-btn label="Cadastrar" type="submit" color="primary"   />
+         <q-btn label="Cadastrar" type="submit" color="primary" :loading="enviando"  />
       </div>
      </q-form>
   </div>
+</section>
 </template>
 
 <script>
+import EpaBannerComponent from '../EpaBannerComponent.vue'
+import { server } from 'boot/axios'
 export default {
    name: 'CadastroprofessorComponent',
+   components: {EpaBannerComponent},
   data () {
     return {
       options:["Masculino","Feminino","outros"],
        isPwd: true,
        confirmePwd:true,
        confirmarSenha:null,
+       enviando: false,
        professor: {
-        id:"ALU-009",
-        nome_completo:null,
-        cpf:null,
-        dataNascimento: null,
-        sexo:null,
-        rua:null,
-        numero:null,
-        bairro:null,
-        cidade:null,
-        estado:null,
-        cep:null,
-        telefone:null,
-        email:null,
-        senha:null
+          id:null,
+          nome_completo:null,
+          cpf:null,
+          dataNascimento: null,
+          sexo:null,
+          rua:null,
+          numero:null,
+          bairro:null,
+          cidade:null,
+          estado:null,
+          cep:null,
+          telefone:null,
+          email:null,
+          senha:null
        }
     }
   },
-  methods:{
-    onSubmit(professor) {
-       this.$q.notify({
+methods:{
+  onSubmit() {
+    this.enviando=true;
+    if(this.confirmarSenha != this.professor.senha){
+      this.enviando=false;
+      return;
+    };
+   server.post('professor',this.professor)
+      .then((response) => {
+        console.log(response);
+        if(response.status == 200){
+          this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
           message: 'Cadastro concluído com sucesso'
-        })
-        console.log(professor);
-        professor.target.submit()
+        }),
+        this.enviando=false;
+        }
+      })
+      .catch(() => {
+        this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Falha ao cadastrar'
+        }),
+         this.enviando=false;
+      })
+    },
+    isValid () {
+      return this.confirmarSenha == this.professor.senha
     }
-  }
+  },
 }
 </script>
 
 <style>
-.container {
+.q-page-container{
+  padding-top:0!important;
+}
+#sectionCadastroProfessor .container {
     width:60%;
     margin-left:20%;
     margin-right:20%;
 }
-.titulo{
+#sectionCadastroProfessor .titulo{
   border-bottom:1px solid grey;
 }
-.titulo h5{
+#sectionCadastroProfessor .titulo h5{
     margin-bottom:0;
     padding-bottom: 12px;
   }
-.nomeCompleto,.email{
+#sectionCadastroProfessor .nomeCompleto,#sectionCadastroProfessor .email{
   width:84%;
   margin-top:43px;
 }
-.row{
+#sectionCadastroProfessor .row{
   display:flex;
 }
-.margin-input{
+#sectionCadastroProfessor .margin-input{
   margin-right:50px;
 }
-.tamanho-input{
+#sectionCadastroProfessor .tamanho-input{
   width:40%;
 }
-.btnCadastro{
+#sectionCadastroProfessor .btnCadastro{
   display:flex;
   justify-content: center;
   margin-top:5%;

@@ -7,4 +7,5 @@ module.exports = app => {
 
     app.route('/agenda/:id')
        .get(agendaController.listOne)
+       .put(agendaController.updateOne)
 }

@@ -1,15 +1,20 @@
 <template>
+<section id="sectionCadastroAluno">
+  <div class="EpaBanner">
+      <EpaBannerComponent
+            titulo="Estudar"
+            descricao="Faça seu cadastro e marque sua aula"
+            style="background-image:url('img/mesa_estudos.png'); background-size:100% 100%"
+      ></EpaBannerComponent>
+    </div>
   <div class="container">
-
     <div class="titulo">
-    <h5> Dados Pessoais</h5>
+    <h5>Dados Pessoais</h5>
     </div>
 
      <q-form
       @submit="onSubmit"
       class="q-gutter-md"
-      action="http://localhost:3000/aluno"
-      method="post"
     >
     <div class="nomeCompleto">
      <q-input
@@ -68,7 +73,8 @@
       </div>
       <div class="tamanho-input">
         <label >Sexo</label>
-      <q-select filled  name="sexo" v-model="aluno.sexo" :options="options"/>
+      <q-select filled  name="sexo" v-model="aluno.sexo" :options="options" label="escolha"
+                :rules="[val => val && val.length > 0 || 'O campo não pode ser nulo']"/>
       </div>
       <div class="titulo">
         <h5>Endereço</h5>
@@ -204,13 +210,11 @@
         <div class="tamanho-input">
         <q-input
           filled
-          v-model="aluno.id"
-          name="id"
-           :type="confirmePwd ? 'password' : 'text'"
+          v-model="confirmarSenha"
+          :type="confirmePwd ? 'password' : 'text'"
           label="Confirmar Senha"
-          lazy-rules
-          :rules="[
-          val => val && val.length > 0 || 'O campo não pode ser nulo']"
+          error-message="As senhas não são iguais"
+          :error="!isValid()"
         >
         <template v-slot:append>
           <q-icon
@@ -224,24 +228,28 @@
       </div>
 
       <div class="btnCadastro">
-         <q-btn label="Cadastrar" type="submit" color="primary"  :loading="enviado" />
+         <q-btn label="Cadastrar" type="submit" color="primary"  :loading="enviando" />
       </div>
      </q-form>
   </div>
+</section>
 </template>
 
 <script>
+import EpaBannerComponent from '../EpaBannerComponent'
+import { server } from 'boot/axios'
 export default {
    name: 'CadastroAlunoComponente',
+   components:{EpaBannerComponent},
   data () {
     return {
       options:["Masculino","Feminino","outros"],
-       isPwd: true,
-       confirmePwd:true,
-       confirmarSenha:null,
-       enviado: false,
-       aluno: {
-        id:"ALU-009",
+      isPwd: true,
+      confirmePwd:true,
+      confirmarSenha:null,
+      enviando: false,
+      aluno: {
+        id:null,
         nome_completo:null,
         cpf:null,
         dataNascimento: null,
@@ -258,60 +266,72 @@ export default {
        }
     }
   },
-  methods:{
-    onSubmit(aluno) {
-    this.enviado=true;
-    aluno.target.submit();
-    if(aluno.target.submit() == true){
-       this.$q.notify({
+methods:{
+  onSubmit() {
+    this.enviando=true;
+    if(this.confirmarSenha != this.aluno.senha){
+      this.enviando=false;
+      return;
+    };
+   server.post('aluno',this.aluno)
+      .then((response) => {
+        if(response.status == 200){
+          this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
           message: 'Cadastro concluído com sucesso'
         }),
-        this.enviado=false;
-    }
-    else{
-       this.$q.notify({
+        this.enviando=false;
+        }
+      })
+      .catch(() => {
+        this.$q.notify({
           color: 'red-5',
           textColor: 'white',
           icon: 'warning',
           message: 'Falha ao cadastrar'
         }),
-         this.enviado=false;
+         this.enviando=false;
+      })
+    },
+    isValid () {
+      return this.confirmarSenha == this.aluno.senha
     }
-    }
+  },
 
-  }
 }
 </script>
 <style>
-.container {
+.q-page-container{
+  padding-top:0!important;
+}
+#sectionCadastroAluno .container {
     width:60%;
     margin-left:20%;
     margin-right:20%;
 }
-.titulo{
+#sectionCadastroAluno .titulo{
   border-bottom:1px solid grey;
 }
-.titulo h5{
+#sectionCadastroAluno .titulo h5{
     margin-bottom:0;
     padding-bottom: 12px;
   }
-.nomeCompleto,.email{
+#sectionCadastroProfessor .nomeCompleto,.email{
   width:84%;
   margin-top:43px;
 }
-.row{
+#sectionCadastroAluno .row{
   display:flex;
 }
-.margin-input{
+#sectionCadastroAluno .margin-input{
   margin-right:50px;
 }
-.tamanho-input{
+#sectionCadastroAluno .tamanho-input{
   width:40%;
 }
-.btnCadastro{
+#sectionCadastroAluno .btnCadastro{
   display:flex;
   justify-content: center;
   margin-top:5%;

@@ -7,4 +7,5 @@ module.exports = app => {
 
     app.route('/aluno/:id')
       .get(alunoController.listOne)
+      .put(alunoController.updateOne)
 }

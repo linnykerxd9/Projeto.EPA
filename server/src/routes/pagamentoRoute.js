@@ -6,6 +6,6 @@ module.exports = app => {
         .get(pagamentoController.listAll)
         .post(pagamentoController.createOne)
 
-    app.route('/pagament/:id')
+    app.route('/pagamento/:id')
     .get(pagamentoController.listOne)
 }
