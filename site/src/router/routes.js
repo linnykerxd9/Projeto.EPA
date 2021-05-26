@@ -4,7 +4,10 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index.vue') },
+    {
+      path:'/perguntasFrequentes',component: () => import('pages/perguntasFrequentes')
+    }
     ]
   },
   {
@@ -21,7 +24,16 @@ const routes = [
       },
     ]
   },
- 
+  {
+    path: '/user',
+    component: () => import('../layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '/user/mapa',
+        component: () => import('../pages/EpaMapa.vue')
+      }
+    ]
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

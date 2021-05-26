@@ -54,7 +54,7 @@
   </div>
 
   <div id="caneta">
-  <img src="img/estudar.png"/>
+    <img src="img/estudar.png"/>
   </div>
 
 </section>
@@ -123,6 +123,9 @@ export default {
 }
 #sectionIndex #divPaiDarAula,#divPaiEstudar{
   margin-top:2%;
+}
+div#caneta img{
+  width:100%;
 }
 </style>
 
