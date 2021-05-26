@@ -5,14 +5,16 @@
     <q-header class="header text-white">
       <q-toolbar  class="container">
         <q-toolbar-title>
-          <img src="img/logo_epa.png" alt="EPA" class="imagem grid-4">
+          <a href="index.html">
+            <img src="img/sapoha.png" alt="EPA" class="imagem grid-4">  
+          </a>
         </q-toolbar-title>
 <div class="header_menu grid-12">
   <ul>
     <li><a href="#">Sobre</a></li>
     <li><span class="dot"></span><a href="#">Como Começar</a></li>
     <li><span class="dot"></span><a href="#">Contato</a></li>
-    <li><span class="dot"></span><a href="#">Login</a></li>
+    <li><span class="dot subtitulo"></span><a href="#">Login</a></li>
   </ul>
 </div>
 
@@ -20,18 +22,24 @@
     </q-header>
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
 
     <q-footer class="bg-grey-8 text-white">
       <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
-          Title
-        </q-toolbar-title>
       </q-toolbar>
+      <div class="footer">
+        <div class="container">
+
+         <div class="grid-8 parceiro">
+           <h3>Seja nosso Parceiro</h3>
+           <div>
+             <img src="img/duvida-de-cabeca.png" alt="cabeça de menino com uma interrogação">
+           </div>
+           </div>       
+      </div>
+      </div>
+      
     </q-footer>
 
   </q-layout>
@@ -48,13 +56,14 @@ export default {
   }
 }
 </script>
+
 <style >
  .header {
     width: 100%;
     background:#6BB1BB;
     top: 0;
     position: fixed;
-    padding: 5px 0;
+    padding: 5px 25px;
 
 }
 
@@ -68,7 +77,6 @@ export default {
     
     display: inline-block;
     margin-left: 25px;
-    margin-top: 25px;
     list-style-type: disc;
 }
 
@@ -79,8 +87,15 @@ export default {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: .1em;
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
+     padding: 10px 0;
+}
+
+
+.header_menu ul li a:hover {
+    color: #fff;
+
 }
 
 .container {
@@ -102,5 +117,18 @@ export default {
 
 .imagem {
   margin-top: 15px;
+}
+
+.subtitulo:after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 2px;
+  background: #000;
+  margin: 14px 0 0px 30px;
+}
+
+.header_menu ul li a .subtitulo:hover {
+  color: #fff;
 }
 </style>

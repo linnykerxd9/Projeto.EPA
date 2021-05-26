@@ -17,6 +17,7 @@
     display: inline-block;
     margin-left: 25px;
     margin-top: 25px;
+   padding-bottom: 25px;
 }
 
 
@@ -27,4 +28,5 @@
     text-transform: uppercase;
     letter-spacing: .1em;
     font-size: 14px;
+   
 }

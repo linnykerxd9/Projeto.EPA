@@ -74,9 +74,6 @@ export default {
 }
 </script>
 <style>
-.q-page-container{
-  padding-top:0!important;
-}
 #sectionIndex #banner{
   background-image:url('../../public/img/quadro_negro.png');
   color: white;

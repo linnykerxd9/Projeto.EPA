@@ -6,7 +6,7 @@
   				<h3><strong>{{titulo}}</strong></h3>
   			</div>
   			<div class="DescricaoBanner">
-  				<div><p class="tracoDuplo">{{descricao}}</p></div>
+  				<div><p class="linhas">{{descricao}}</p></div>
   				<div class="autor" v-show="autor"><p>{{autor}}</p></div>
   			</div>
 
@@ -32,10 +32,31 @@ export default {
 		background-position-y:bottom;
 	}
 	.center{ display: grid; justify-items:center;}
-	.TituloBanner{font-family: Georgia;}
-	.DescricaoBanner{width: 23%; font-size: 13px; font-style: italic;
+	.TituloBanner{font-family: Georgia;font-size: 42px; margin-top:30px}
+	.DescricaoBanner{width: 26%; font-size: 15px; font-style: italic;
     font-weight: 900;
-    margin-left: 24px;}
-    .autor{display: flex; justify-content: center;
+    margin-left: 24px;
+	}
+    .autor{display: flex; justify-content: center; font-family: Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-weight: bold; font-size: 12px; letter-spacing: .1em;
+	padding: 10px;
     }
+	.linhas::before{
+		content: "";
+  display: block;
+  width: 90px;
+  height: 2px;
+  background: #000;
+  margin: 20px 0 10px 55px;
+	} 
+
+	.linhas::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 2px;
+  background: #000;
+  margin: 12px 0 10px 58px;
+}
 </style>
