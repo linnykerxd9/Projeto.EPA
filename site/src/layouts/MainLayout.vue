@@ -5,7 +5,7 @@
     <q-header class="header text-white">
       <q-toolbar  class="container">
         <q-toolbar-title>
-          <a href="index.html">
+          <a href="/">
             <img src="img/sapoha.png" alt="EPA" class="imagem grid-4">  
           </a>
         </q-toolbar-title>
@@ -32,10 +32,15 @@
         <div class="container">
 
          <div class="grid-8 parceiro">
-           <h3>Seja nosso Parceiro</h3>
-           <div>
-             <img src="img/duvida-de-cabeca.png" alt="cabeça de menino com uma interrogação">
+           <div class="row">
+             <div class="img-icones-footer">
+               <img src="img/duvida-de-cabeca.png" alt="cabeça de menino com uma interrogação">
+              </div>
+             <div class="link-footer">
+             <h3>Perguntas frequentes</h3> 
+             </div>
            </div>
+
            </div>       
       </div>
       </div>
@@ -69,8 +74,6 @@ export default {
 
 .header_menu {
     text-align: right;
-    
-
 }
 
 .header_menu ul li {
@@ -95,7 +98,6 @@ export default {
 
 .header_menu ul li a:hover {
     color: #fff;
-
 }
 
 .container {
@@ -117,6 +119,8 @@ export default {
 
 .imagem {
   margin-top: 15px;
+  width: 151px;
+  margin-bottom: 10px;
 }
 
 .subtitulo:after {
@@ -128,7 +132,10 @@ export default {
   margin: 14px 0 0px 30px;
 }
 
-.header_menu ul li a .subtitulo:hover {
-  color: #fff;
+.subtitulo:hover {
+  background: #fff;
+}
+.link-footer{
+  margin-left:2%;
 }
 </style>
