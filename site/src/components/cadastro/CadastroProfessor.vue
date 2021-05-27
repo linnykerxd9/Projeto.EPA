@@ -303,9 +303,6 @@ methods:{
 </script>
 
 <style>
-.q-page-container{
-  padding-top:0!important;
-}
 #sectionCadastroProfessor .container {
     width:60%;
     margin-left:20%;
@@ -313,6 +310,7 @@ methods:{
 }
 #sectionCadastroProfessor .titulo{
   border-bottom:1px solid grey;
+  margin-top: 2%;
 }
 #sectionCadastroProfessor .titulo h5{
     margin-bottom:0;
@@ -336,5 +334,8 @@ methods:{
   justify-content: center;
   margin-top:5%;
   margin-bottom:5%;
+}
+#sectionCadastroProfessor .nomeCompleto{
+margin-top: 4%;
 }
 </style>

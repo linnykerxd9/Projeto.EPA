@@ -313,6 +313,7 @@ methods:{
 }
 #sectionCadastroAluno .titulo{
   border-bottom:1px solid grey;
+  margin-top: 2%;
 }
 #sectionCadastroAluno .titulo h5{
     margin-bottom:0;
@@ -336,5 +337,8 @@ methods:{
   justify-content: center;
   margin-top:5%;
   margin-bottom:5%;
+}
+#sectionCadastroAluno .nomeCompleto{
+margin-top: 4%;
 }
 </style>

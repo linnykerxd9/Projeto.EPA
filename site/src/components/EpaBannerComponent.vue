@@ -49,7 +49,7 @@ export default {
   height: 2px;
   background: #000;
   margin: 20px 0 10px 55px;
-	} 
+	}
 
 	.linhas::after {
   content: "";

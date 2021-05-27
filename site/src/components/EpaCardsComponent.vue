@@ -5,7 +5,7 @@
       <q-card-section class="q-pt-none">
         {{ descricao }}
       <div class="divBtn" v-show="link">
-         <q-btn  :label="nomeBtn" :to="link" style="background-color:rgb(95 134 98);"/>
+         <q-btn id="btnParaCadastro" :label="nomeBtn" :to="link" style="background-color:rgb(107, 177, 186);"/>
       </div>
       </q-card-section>
     </q-card>
@@ -40,6 +40,7 @@ export default {
 	margin-right: 50px;
   color:white;
   border: 2px solid rgb(71, 106, 74);
+  margin-top: 10px;
 }
 .my-card{
   border-radius: 0px;
@@ -61,5 +62,12 @@ export default {
 }
 #linkImagem{
   display:initial;
+
+}
+#linkImagem .q-btn__wrapper{
+  padding:0!important;
+}
+div.divBtn #btnParaCadastro{
+      border: 2px solid white;
 }
 </style>

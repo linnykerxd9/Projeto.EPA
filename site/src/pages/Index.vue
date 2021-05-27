@@ -54,7 +54,7 @@
   </div>
 
   <div id="caneta">
-    <img src="img/estudar.png"/>
+    <a href="/#/perguntasFrequentes"><img src="/img/sobre.png" alt="texto sobre o epa"></a>
   </div>
 
 </section>
@@ -124,8 +124,12 @@ export default {
 #sectionIndex #divPaiDarAula,#divPaiEstudar{
   margin-top:2%;
 }
-div#caneta img{
+#sectionIndex #caneta{
+    height: 325px;
+}
+#sectionIndex #caneta img{
   width:100%;
+  height:100%;
 }
 </style>
 
