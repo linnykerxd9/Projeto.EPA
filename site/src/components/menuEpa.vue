@@ -2,7 +2,7 @@
 <section id="sectionMenuMapa" v-if="fundo">
   <div class="menu tamanho">
    <q-btn :to="link" class="tamanho"><img class="tamanho" :src="fundo"></q-btn>
-   <p style="justify-content: center; display: flex;">{{texto}}</p>
+   <div class="descricaoBtnMenu"><p>{{texto}}</p></div>
   </div>
 </section>
 </template>
@@ -30,5 +30,8 @@ export default {
   border: 0 solid transparent;
   display: inline;
 }
-
+#sectionMenuMapa .descricaoBtnMenu{
+  display:flex;
+  justify-content: center;
+}
 </style>

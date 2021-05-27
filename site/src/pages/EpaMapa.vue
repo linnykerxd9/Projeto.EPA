@@ -72,11 +72,9 @@ export default {
   justify-content: center;
 }
 #sectionMapa .center{
-  width: 70%;
   margin-left: 15%;
   margin-right: 15%;
   margin-top:3%;
+  display: flow-root;
 }
-
-
 </style>
