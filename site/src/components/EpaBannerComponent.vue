@@ -32,7 +32,7 @@ export default {
 		background-position-y:bottom;
 	}
 	.center{ display: grid; justify-items:center;}
-	.TituloBanner{font-family: Georgia;font-size: 42px; margin-top:30px}
+	.TituloBanner{font-family: Georgia;font-size: 42px;}
 	.DescricaoBanner{width: 26%; font-size: 15px; font-style: italic;
     font-weight: 900;
     margin-left: 24px;
