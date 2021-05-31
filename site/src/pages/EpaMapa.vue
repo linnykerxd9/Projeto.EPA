@@ -13,12 +13,20 @@
       </div>
       </div>
      </div>
+       <div class="divPaiMapa">
+        <div class="divTamanhoMapa">
+        <!-- Chamando o mapa do google maps através dessa div com o id map-->
+        <EpaMapaComponent />
+        </div>
+      </div>
    </section>
   </q-page>
 </template>
 
 <script>
 import EpaMenuComponent from '../components/menuEpa'
+import EpaMapaComponent from '../components/EpaMapaComponent'
+//Fazendo a variável que irá guardar os itens do menu
 const menu = [
   {
     link:"#",
@@ -53,12 +61,12 @@ const menu = [
 ]
 export default {
  name: 'EpaMapaPage',
- components:{EpaMenuComponent},
+ components:{EpaMenuComponent,EpaMapaComponent},
   data()  {
     return{
       menuMapa: menu,
     }
-  }
+  },
 }
 </script>
 <style>
@@ -76,5 +84,15 @@ export default {
   margin-right: 15%;
   margin-top:3%;
   display: flow-root;
+}
+#sectionMapa .divPaiMapa{
+  display:flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+#sectionMapa .divTamanhoMapa{
+  width: 60%;
+  height: 400px;
+  box-shadow: 4px 3px 16px -3px;
 }
 </style>
