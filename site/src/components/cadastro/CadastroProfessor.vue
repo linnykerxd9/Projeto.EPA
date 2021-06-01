@@ -274,7 +274,6 @@ methods:{
     };
    server.post('professor',this.professor)
       .then((response) => {
-        console.log(response);
         if(response.status == 200){
           this.$q.notify({
           color: 'green-4',

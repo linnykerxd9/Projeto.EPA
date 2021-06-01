@@ -108,8 +108,11 @@
         </div>
       </div>
     </q-footer>
-    <q-dialog v-model="modalLogin" class="testando">
-      <q-card style="width: 800px; max-width: 80vw; height:377px; border-radius:20px; overflow:hidden;">
+
+
+
+    <q-dialog v-model="modalLogin">
+      <q-card style="width: 800px; max-width: 80vw; height:400px; border-radius:20px; overflow:hidden;">
       <div class="row">
         <div class="bem-vindo">
           <q-card-section>
@@ -143,11 +146,19 @@
           </q-card-section>
           <q-card-section class="card-section-Inputs">
             <div class="divInputEmail">
-              <q-input square filled v-model="email" label="Email">
+                <q-input square
+                         filled
+                         v-model="email"
+                         label="Email"
+                         :rules="[val => !!val || 'Campo obrigatório']">
               </q-input>
             </div>
-            <div class="divInputSenha"> 
-          <q-input v-model="senha" filled :type="isPwd ? 'password' : 'text'" label="Senha">
+            <div class="divInputSenha">
+                 <q-input v-model="senha"
+                          filled
+                          :type="isPwd ? 'password' : 'text'"
+                          label="Senha"
+                          :rules="[val => !!val || 'Campo obrigatório']">
            <template v-slot:append>
               <q-icon
                 :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -164,7 +175,7 @@
             </template>
           </q-btn>
           </q-card-actions>
-            <p class="pInformacoes">esqueceu sua senha <span> <a href="#"> clique</a></span></p> 
+            <p class="pInformacoes">esqueceu sua senha <span> <a href="#"> clique</a></span></p>
         </div>
           </q-card-section>
         </div>
@@ -175,6 +186,7 @@
 </template>
 
 <script>
+import { server } from 'boot/axios'
 export default {
   name: "MainLayout",
   data() {
@@ -184,15 +196,44 @@ export default {
       senha:null,
       isPwd:true,
       loading:false,
+      usuario:null,
     };
   },
    methods: {
     logar() {
+      //colocando o loading do botão para true para começar a animação
       this.loading = true
+      //fazendo a primeira validação na tabela de aluno
+      server.get(`aluno/${this.email}/${this.senha}`)
+      .then(aluno => {
+        this.usuario = aluno.data
+      })
+      .catch(err => console.log(err))
+      //fazendo uma validação depois de 2 seg na tabela de professor
       setTimeout(() => {
-        // we're done, we reset loading state
-        this.loading = false
-      }, 3000)
+        //fazendo a validação para ver se o usuario é undefined
+        if(this.usuario[0] == undefined){
+        server.get(`professor/${this.email}/${this.senha}`)
+      .then(professor => {
+        this.usuario = professor.data
+      })
+        }
+         this.loading = false;
+      },2000)
+      //fazendo a validação final depois de 3 seg para saber se foi encontrado um usuario ou n
+      setTimeout(() => {
+      if(this.usuario[0] != undefined){
+         this.$router.push({path:'/user/mapa'})
+      }else{
+        //mostrando mensagem de erro caso não encontre o usuario
+         this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Login ou senha incorretos'
+        })
+      }
+      },3000)
     }
   }
 };
@@ -304,7 +345,7 @@ export default {
 .parceiros p {
    color: #000;
   font-size: 12px;
-  
+
 }
 
 .parceiros{
@@ -372,7 +413,7 @@ export default {
   margin-bottom:0;
   display: flex;
   justify-content: center;
-  margin-top: 29px;
+  margin-top: 0px;
 }
 .q-dialog--modal .btn-entrar{
   background-color:rgb(107, 177, 187);
