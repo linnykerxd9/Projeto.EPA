@@ -30,7 +30,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       dataNascimento: {
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       sexo:{
         type: Sequelize.STRING

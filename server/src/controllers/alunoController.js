@@ -51,7 +51,15 @@ exports.listOne = (req, res) => {
   .catch(err => {res.send(err)})
 
 }
-
+exports.getLogin = (req,res) => {
+    Aluno.findAll({where:{
+        email:req.params.email,
+        senha: req.params.senha
+    }
+    })
+    .then(aluno => res.send(aluno))
+    .catch(err => res.send(err))
+}
 exports.updateOne = (req, res) => {
     const {
         email, nome_completo, telefone, cpf, bairro, cep, cidade, idade,sexo, estado, rua,
@@ -65,6 +73,7 @@ exports.updateOne = (req, res) => {
     })
     .catch(err => {res.send(err)})
 }
+
 // Criando o metodo de update do aluno para contornar o problema descrito lá em cima
 updateIdAluno = (idAluno) => {
      config.update({ultimoIdAluno: idAluno},{where:{id:1}})
