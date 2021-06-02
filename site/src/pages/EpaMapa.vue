@@ -92,7 +92,7 @@ export default {
 }
 #sectionMapa .divTamanhoMapa{
   width: 60%;
-  height: 400px;
+  height: 450px;
   box-shadow: 4px 3px 16px -3px;
 }
 </style>
