@@ -77,7 +77,7 @@
               </div>
             </div>
             <!-- email -->
-            <div class="col-6 email">
+            <div">
               <h3>Estude ou dê aulas perto de casa, receba novidades no seu email:</h3>
               <div><input type="digite seu email aqui"></div>
             </div>
