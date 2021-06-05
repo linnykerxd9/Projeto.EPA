@@ -25,11 +25,11 @@ const routes = [
     ]
   },
   {
-    path: '/user',
-    component: () => import('../layouts/MainLayout.vue'),
+    path: '/user=:id',
+    component: () => import('../layouts/logadoLayout.vue'),
     children: [
       {
-        path: '/user/mapa',
+        path: 'mapa',
         component: () => import('../pages/EpaMapa.vue')
       }
     ]
