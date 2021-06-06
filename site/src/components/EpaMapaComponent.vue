@@ -16,7 +16,7 @@
 </GmapMap>
 
     <q-dialog v-model="perfil" v-if="professor != null">
-      <q-card class="my-card">
+      <q-card class="my-card" style="border-radius:11px;">
         <q-img src="img/foto-perfil.jpg" />
 
         <q-card-section>
@@ -32,6 +32,16 @@
               Telefone: {{professor.telefone}}
           </div>
         </q-card-section>
+        <q-card-section v-if="materias.length != 0">
+          <h5>Minhas Materias:</h5>
+                  <q-separator />
+          <EpaMateriasComponent v-for="materia in materias"
+                                :key="materia.id"
+                                :nome="materia.Materium.nome"
+                                :valor="materia.Materium.valorMateria"
+                                :tipo="materia.Materium.escolaridade"
+          ></EpaMateriasComponent>
+        </q-card-section>
         <q-separator />
         <q-card-actions align="right">
           <q-btn v-close-popup flat color="primary" label="Chat" />
@@ -42,6 +52,7 @@
 </template>
 
 <script>
+import EpaMateriasComponent from './materiasComponent.vue'
 import {gmapApi} from 'vue2-google-maps'
 import { server } from 'boot/axios'
 import Vue from 'vue'
@@ -54,7 +65,7 @@ Vue.use(VueGoogleMaps, {
 })
 export default {
    name: 'EpaMapaComponents',
-   components:{},
+   components:{EpaMateriasComponent},
   data () {
     return {
         currentLocation : { lat: -34.397, lng: 150.644},
@@ -62,9 +73,11 @@ export default {
         professor: null,
         perfil:false,
         stars: 3,
+        materias: []
     }
   },
   methods: {
+    //função para pegar a localização atual do user
   localizar() {
       navigator.geolocation.getCurrentPosition((position) => {
         this.currentLocation = {
@@ -74,8 +87,9 @@ export default {
       });
     },
 
-     mostrarProfs() {
-       server.get('localizacao')
+    //funcão para mostrar os marcadores dos professores no mapa
+      mostrarProfs() {
+      server.get('localizacao')
       .then(localizacoes => {
         this.localizacoes = localizacoes.data.filter( localizacao =>   localizacao.situacao == 1);
         }).catch(() => {
@@ -86,15 +100,19 @@ export default {
           message: 'Falha ao procurar por professores próximos'
         })
       })
+
     },
+    //funcão para pegar a localização de apenas 1 professor no loop v-form
+    //não estava mostrando fazendo lat:localizacao.latitude e por isso tive que acrescentar essa função
      getPosition(marker) {
       return {
         lat: parseFloat(marker.latitude),
         lng: parseFloat(marker.longitude)
       }
   },
-  mostrarPerfil(idProfessor){
-      server.get(`professor/${idProfessor}`)
+  //função para pegar os dados de apenas 1 professor quando clicar no marcador dele
+  async mostrarPerfil(idProfessor){
+     await server.get(`professor/${idProfessor}`)
       .then(professor => {
         this.professor = professor.data[0];
         this.perfil = true;
@@ -107,6 +125,8 @@ export default {
           message: 'Falha ao acessar esse perfil'
         })
       })
+    await server.get(`materiaProf/${idProfessor}`)
+    .then(materia => { this.materias = materia.data });
   }
 },
    computed: {

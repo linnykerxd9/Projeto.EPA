@@ -15,13 +15,14 @@ export default {
 </script>
 <style>
 #sectionMenuMapa{
-  width: 94px;
-  height: 94px;
+  width: 5.875rem;
+  height: 5.875rem;
   border: 1px solid #c5c5c5;
   border-radius: 78px;
   background-color:#f7f5f5;
   float:left;
-  margin-right: 3%;
+  margin-right: 1.6875rem;
+  margin-bottom: 3.125rem;
 }
 #sectionMenuMapa .tamanho{
   width:100%;
