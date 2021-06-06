@@ -267,13 +267,13 @@ export default {
     }
   },
 methods:{
-  onSubmit() {
+  async onSubmit() {
     this.enviando=true;
     if(this.confirmarSenha != this.aluno.senha){
       this.enviando=false;
       return;
     };
-   server.post('aluno',this.aluno)
+   await server.post('aluno',this.aluno)
       .then((response) => {
         if(response.status == 200){
           this.$q.notify({
@@ -283,6 +283,7 @@ methods:{
           message: 'Cadastro concluído com sucesso'
         }),
         this.enviando=false;
+        this.$router.push({path:'/'})
         }
       })
       .catch(() => {
