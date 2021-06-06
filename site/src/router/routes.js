@@ -31,9 +31,13 @@ const routes = [
       {
         path: 'mapa',
         component: () => import('../pages/EpaMapa.vue')
-      }
+    },
+    {
+      path: "meus-dados",
+      component: () => import('../pages/EpaMeus-dados.vue')
+    }
     ]
-  },
+      },
   // Always leave this as last one,
   // but you can also remove it
   {

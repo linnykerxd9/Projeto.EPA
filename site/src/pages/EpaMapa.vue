@@ -55,7 +55,7 @@ const menu = [
   },
    {
      prof:false,
-    link:"#",
+    link:"meus-dados",
     fundo:"img/dados-pessoais.svg",
     texto:"Meus dados"
   },
