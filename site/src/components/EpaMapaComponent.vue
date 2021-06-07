@@ -29,7 +29,7 @@
         </q-card-section>
         <q-card-section class="q-pt-none">
           <div class="text-subtitle1" >
-              Telefone: {{professor.telefone}}
+              Sexo: {{professor.sexo}}
           </div>
         </q-card-section>
         <q-card-section v-if="materias.length != 0">
