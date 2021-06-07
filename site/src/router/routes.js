@@ -35,6 +35,10 @@ const routes = [
     {
       path: "meus-dados",
       component: () => import('../pages/EpaMeus-dados.vue')
+    },
+    {
+      path: "minhas-materias",
+      component: () => import('../pages/minhas-materias.vue')
     }
     ]
       },

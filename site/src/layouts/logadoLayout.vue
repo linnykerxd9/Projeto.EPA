@@ -5,7 +5,7 @@
       <q-toolbar style="padding:0.4375rem 0;">
         <div class="container">
           <div class="menuNavContainer">
-            <q-img src="img/sapoha.png" width="7.5rem"/>
+            <a href="/"><q-img src="img/sapoha.png" width="7.5rem"/></a>
             <div class="menuNavContent">
               <q-avatar>
                <img src="img/foto-perfil.jpg">
@@ -30,7 +30,7 @@
 
                       <q-separator vertical inset class="q-mx-lg" />
 
-                      <div class="column items-center"   style="margin:0 10px;">
+                      <div class="column items-center" style="margin:0 10px;">
                         <q-avatar size="72px">
                           <img src="img/foto-perfil.jpg">
                         </q-avatar>
@@ -42,7 +42,8 @@
                           label="Sair"
                           push
                           to="/"
-                          size="0.6875rem"
+                          size="11px"
+                          style="letter-spacing: 1px;"
                           v-close-popup
                         />
                         </div>
@@ -174,7 +175,7 @@ const menu = [
   {
     menu:"professor",
     icone:"book",
-    link:"#",
+    link:"minhas-materias",
     nome:"Matérias"
   },
 ]
@@ -227,6 +228,11 @@ export default {
 <style >
 #sectionlayoutLogado .navbar{
   background: #6bb1bb;
+}
+#sectionlayoutLogado .container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
  #sectionlayoutLogado .menuNavContainer{
    display: flex;

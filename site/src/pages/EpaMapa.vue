@@ -37,7 +37,7 @@ const menu = [
   },
   {
     prof:true,
-    link:"#",
+    link:"minhas-materias",
     fundo:"img/livros.svg",
     texto:"Minhas matérias"
   },
