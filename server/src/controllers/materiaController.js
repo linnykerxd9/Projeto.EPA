@@ -1,4 +1,5 @@
 const Materia = require('../models').Materia;
+const materiaProf = require('../models').materiaProf;
 
 exports.listAll = (req, res) => {
     Materia.findAll()
@@ -25,4 +26,14 @@ exports.updateOne = (req, res) => {
   	})
   })
   .catch(err => res.send(err))
+}
+exports.deleteOne = (req, res) => {
+   Materia.destroy({cascade: true, where:{id:req.params.id}})
+      .then(materia => {
+         res.json({
+            message: "materia deletado com sucesso",
+            data: materia
+          })
+        })
+      .catch(err => console.log(err))
 }

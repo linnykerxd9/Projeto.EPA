@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Materia.init({
     nome: DataTypes.STRING,
+    serie: DataTypes.STRING,
     valorMateria: DataTypes.INTEGER,
     escolaridade: DataTypes.STRING,
   }, {

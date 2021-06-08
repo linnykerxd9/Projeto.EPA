@@ -9,5 +9,6 @@ module.exports = app => {
         app.route('/materia/:id')
         .get(materiaController.listOne)
         .put(materiaController.updateOne)
+        .delete(materiaController.deleteOne)
     
 }
