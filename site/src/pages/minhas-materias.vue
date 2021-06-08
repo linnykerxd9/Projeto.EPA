@@ -2,7 +2,7 @@
   <q-page padding>
     <!-- content -->
     <section id="sectionMinhasMaterias">
-      <div class="container">
+      <div class="container center column">
           <div class="materiasCreateContainer">
               <div class="materiaCreate">
                 <q-form
@@ -68,12 +68,35 @@
                        </div>
                     </div>
                 </div>
-                  <div>
+                  <div class="center">
                     <q-btn label="Criar" type="submit" color="primary"/>
                     <q-btn label="Limpar" type="reset" color="primary" flat class="q-ml-sm" />
                  </div>
                 </q-form>
               </div>
+          </div>
+
+          <div class="meusCardsContainer">
+           <h4>Minhas matérias</h4>
+
+           <q-separator class="separador"/>
+
+            <div class="meusCardsContent" v-if="materias.length != 0">
+                <div class="center meusCardsColumn">
+                     <materiasComponent
+                                      v-for="materia in materias"
+                                      :key="materia.id"
+                                      :nome="materia.Materium.nome"
+                                      :serie="materia.Materium.serie"
+                                      :valor="materia.Materium.valorMateria"
+                                      :idMateria="materia.Materium.id"
+                                      :tipo="materia.Materium.escolaridade"
+                     ></materiasComponent>
+                </div>
+            </div>
+            <div class="center" v-else>
+                <h6 style="color:#828080;">Nenhuma matéria cadastrada</h6>
+          </div>
           </div>
       </div>
     </section>
@@ -81,7 +104,8 @@
 </template>
 
 <script>
-
+import { server } from 'boot/axios'
+import materiasComponent from '../components/materiasComponent.vue'
 const materias = ['Português', 'Matemática', 'História', 'Geografia', 'Artes','Física','Filosofia','Biologia','Química','Sociologia'];
 const escolaridades = ['Ensino fundamental 1','Ensino fundamental 2','Ensino Médio']
 const series = [
@@ -103,8 +127,10 @@ const series = [
 ]
 export default {
   name: 'EpaMinhasMaterias',
+  components:{ materiasComponent },
   data(){
     return{
+      idProfessor: this.$route.params.id,
       opcoesMateria: materias,
       opcoesEscolaridade: escolaridades,
       opcoesSerie: series,
@@ -113,31 +139,74 @@ export default {
         escolaridade: null,
         serie: null,
         valor:null,
-      }
+      },
+      materias:[],
     }
   },
    methods: {
     filterFn (val, update) {
       if (val === '') {
         update(() => {
-          this.options = materias
+          this.opcoesMateria = materias
         })
         return
       }
       update(() => {
         const needle = val.toLowerCase()
-        this.options = materias.filter(v => v.toLowerCase().indexOf(needle) > -1)
+        this.opcoesMateria = materias.filter(v => v.toLowerCase().indexOf(needle) > -1)
+      })
+    },
+    onSubmit(){
+      console.log(this.materia);
+    },
+    onReset(){
+      this.materia.nome = null;
+      this.materia.escolaridade = null;
+      this.materia.serie = null;
+      this.materia.valor = null;
+      },
+    async recuperarMaterias() {
+    await server.get(`materiaProf/${this.idProfessor}`)
+    .then(materia => {
+       this.materias = materia.data 
+      console.log(this.materias);
+      console.log(this.idProfessor);
+       })
+    .catch(() => {
+        this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Falha ao recuperar suas matérias'
+        })
       })
     }
+  },
+  beforeMount() {
+    this.recuperarMaterias();
   },
 }
 </script>
 
 <style>
+#sectionMinhasMaterias .center{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#sectionMinhasMaterias .column{
+    flex-direction: column;
+}
+#sectionMinhasMaterias .separador{
+  margin:1rem 0;
+}
 #sectionMinhasMaterias .materiasCreateContainer{
+  width: 70%;
   background-color: #f9f9f9;
   border-radius: 29px;
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.24);
+  padding: 0.9375rem;
 }
 #sectionMinhasMaterias .materiaInformacoes{
   display: flex;
@@ -145,5 +214,22 @@ export default {
   justify-content: space-around;
   align-items: center;
   padding-top: 1.1875rem;
+}
+#sectionMinhasMaterias .meusCardsContainer{
+  margin:20px 0;
+  width:100%;
+}
+#sectionMinhasMaterias .meusCardsContent{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} 
+#sectionMinhasMaterias .meusCardsContent .meusCardsColumn{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
 }
 </style>
