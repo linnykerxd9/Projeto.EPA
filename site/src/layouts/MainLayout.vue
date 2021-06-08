@@ -1,4 +1,3 @@
-
 <template>
   <q-layout view="hHh lpR fff">
     <q-header class="header text-white">

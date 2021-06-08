@@ -1,5 +1,6 @@
 
 const routes = [
+
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
@@ -10,6 +11,7 @@ const routes = [
     }
     ]
   },
+
   {
     path: '/cadastro',
     component: () => import('../layouts/Cadastro.vue'),
@@ -24,6 +26,7 @@ const routes = [
       },
     ]
   },
+
   {
     path: '/user',
     component: () => import('../layouts/MainLayout.vue'),
@@ -31,7 +34,7 @@ const routes = [
       {
         path: '/user/mapa',
         component: () => import('../pages/EpaMapa.vue')
-      }
+      },
     ]
   },
   // Always leave this as last one,
