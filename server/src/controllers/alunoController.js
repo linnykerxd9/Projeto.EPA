@@ -62,9 +62,9 @@ exports.getLogin = (req,res) => {
 }
 exports.updateOne = (req, res) => {
     const {
-        email, nome_completo, telefone, cpf, bairro, cep, cidade, idade,sexo, estado, rua,
+        email, nome_completo, telefone, cpf, bairro, cep, cidade, dataNascimento,sexo, estado, rua,
         contaBanco, senha,saldo } = req.body
-    Aluno.update({email,nome_completo, telefone, cpf, bairro, cep, cidade, idade,sexo, estado, rua,
+    Aluno.update({email,nome_completo, telefone, cpf, bairro, cep, cidade, dataNascimento,sexo, estado, rua,
         contaBanco, senha,saldo}, {where: {id: req.params.id}})
     .then(Aluno => {
         res.json({

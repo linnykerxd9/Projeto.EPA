@@ -1,13 +1,7 @@
 <template>
-<section id="sectionCadastroAluno">
-  <div class="EpaBanner">
-      <EpaBannerComponent
-            titulo="Estudar"
-            descricao="Faça seu cadastro e marque sua aula"
-            style="background-image:url('img/mesa_estudos.png'); background-size:100% 100%"
-      ></EpaBannerComponent>
-    </div>
-  <div class="container">
+<section id="sectionMeusDados">
+
+     <div class="container">
     <div class="titulo">
     <h5>Dados Pessoais</h5>
     </div>
@@ -20,13 +14,11 @@
      <q-input
         filled
         name="nome_completo"
-        v-model="aluno.nome_completo"
+        v-model="usuario.nome_completo"
         label="Seu nome Completo *"
-        hint="Name and surname"
         lazy-rules
         :rules="[
-        val => val && val.length > 0 || 'O campo não pode ser nulo',
-        val => val && val.length < 75 || 'O nome não pode ter mais do que 75 caracteres']"
+        val => val && val.length > 0 || 'O campo não pode ser nulo',]"
       />
       </div>
       <div class="row">
@@ -34,15 +26,14 @@
            <q-input
         filled
         name="cpf"
-        v-model="aluno.cpf"
+        v-model="usuario.cpf"
         label="CPF"
         hint="Apenas números"
         lazy-rules
         mask="###.###.###-##"
           unmasked-value
         :rules="[
-        val => val && val.length > 0 || 'O campo não pode ser nulo',
-        val => val && val.length > 10 || 'O não pode ter menos que 11 dígitos']"
+        val => val && val.length > 0 || 'O campo não pode ser nulo',]"
       />
         </div>
       <div class="tamanho-input">
@@ -50,7 +41,7 @@
           ref="date"
           filled
           name="dataNascimento"
-          v-model="aluno.dataNascimento"
+          v-model="usuario.dataNascimento"
           label="Data de nascimento"
           lazy-rules
           :rules="[ val => val !== null && val !== '' || 'Selecione uma data']"
@@ -59,7 +50,7 @@
           <template v-slot:append>
             <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale" ref="qDateProxy">
-                <q-date  v-model="aluno.dataNascimento"
+                <q-date  v-model="usuario.dataNascimento"
                   mask="DD/MM/YYYY">
               <div class="row items-center justify-end">
                 <q-btn v-close-popup label="Close" color="primary" flat />
@@ -73,7 +64,7 @@
       </div>
       <div class="tamanho-input">
         <label >Sexo</label>
-      <q-select filled  name="sexo" v-model="aluno.sexo" :options="options" label="escolha"
+      <q-select filled  name="sexo" v-model="usuario.sexo" :label="usuario.sexo"
                 :rules="[val => val && val.length > 0 || 'O campo não pode ser nulo']"/>
       </div>
       <div class="titulo">
@@ -84,7 +75,7 @@
         <q-input
           filled
           name="rua"
-          v-model="aluno.rua"
+          v-model="usuario.rua"
           label="Rua"
           lazy-rules
           :rules="[
@@ -95,7 +86,7 @@
         <q-input
           filled
           name="numero"
-          v-model="aluno.numero"
+          v-model="usuario.numero"
           label="numero"
          />
         </div>
@@ -104,7 +95,7 @@
         <div class="tamanho-input margin-input">
         <q-input
           filled
-          v-model="aluno.bairro"
+          v-model="usuario.bairro"
           label="Bairro"
           name="bairro"
           lazy-rules
@@ -116,7 +107,7 @@
         <q-input
           filled
           name="cidade"
-          v-model="aluno.cidade"
+          v-model="usuario.cidade"
           label="cidade"
           lazy-rules
           :rules="[
@@ -128,7 +119,7 @@
         <div class="tamanho-input margin-input">
         <q-input
           filled
-          v-model="aluno.estado"
+          v-model="usuario.estado"
           label="Estado"
           name="estado"
           lazy-rules
@@ -139,7 +130,7 @@
         <div class="tamanho-input">
         <q-input
           filled
-          v-model="aluno.cep"
+          v-model="usuario.cep"
           label="Cep"
           name="cep"
           hint="Apenas números"
@@ -147,8 +138,7 @@
           mask="#####-###"
           unmasked-value
           :rules="[
-          val => val && val.length > 0 || 'O campo não pode ser nulo',
-          val => val && val.length > 7 || 'O campo não pode ter menos que 8 dígitos']"
+          val => val && val.length > 0 || 'O campo não pode ser nulo',]"
          />
         </div>
       </div>
@@ -158,7 +148,7 @@
       <div class="tamanho-input">
         <q-input
           filled
-          v-model="aluno.telefone"
+          v-model="usuario.telefone"
           label="Telefone"
           name="telefone"
           hint="Apenas números e com o DDD"
@@ -166,8 +156,7 @@
           mask="(##)#####-####"
           unmasked-value
           :rules="[
-          val => val && val.length > 0 || 'O campo não pode ser nulo',
-          val => val && val.length > 10 || 'O campo não pode ter menos que 11 digitos']"
+          val => val && val.length > 0 || 'O campo não pode ser nulo',]"
          />
         </div>
         <div class="titulo">
@@ -176,79 +165,34 @@
          <div class="email">
         <q-input
           filled
-          v-model="aluno.email"
+          v-model="usuario.email"
           label="Email"
           name="email"
           lazy-rules
           :rules="[
           val => val && val.length > 0 || 'O campo não pode ser nulo']"
          />
-        </div>
-        <div class="row">
-        <div class="tamanho-input margin-input">
-      <q-input
-          filled
-          v-model="aluno.senha"
-          label="Senha"
-          hint="8 caracteres"
-          name="senha"
-          :type="isPwd ? 'password' : 'text'"
-          lazy-rules
-          :rules="[
-          val => val && val.length > 0 || 'O campo não pode ser nulo',
-          val => val && val.length > 7 || 'A senha precisa ter no minimo 8 caracteres'
-          ]">
-        <template v-slot:append>
-          <q-icon
-            :name="isPwd ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="isPwd = !isPwd"
-          />
-        </template>
-      </q-input>
-        </div>
-        <div class="tamanho-input">
-        <q-input
-          filled
-          v-model="confirmarSenha"
-          :type="confirmePwd ? 'password' : 'text'"
-          label="Confirmar Senha"
-          error-message="As senhas não são iguais"
-          :error="!isValid()"
-        >
-        <template v-slot:append>
-          <q-icon
-            :name="confirmePwd ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="confirmePwd = !confirmePwd"
-          />
-        </template>
-      </q-input>
-        </div>
-      </div>
+        </div>                   
+          
 
       <div class="btnCadastro">
-         <q-btn label="Cadastrar" type="submit" color="primary"  :loading="enviando" />
+         <q-btn label="Atualizar" type="submit" color="primary"  :loading="enviando" />
       </div>
      </q-form>
   </div>
 </section>
 </template>
 
+
 <script>
-import EpaBannerComponent from '../EpaBannerComponent'
 import { server } from 'boot/axios'
 export default {
-   name: 'CadastroAlunoComponente',
-   components:{EpaBannerComponent},
-  data () {
-    return {
-      options:["Masculino","Feminino","outros"],
-      isPwd: true,
-      confirmePwd:true,
-      confirmarSenha:null,
-      enviando: false,
-      aluno: {
+   name: 'EpaMeusDados',
+   data(){
+   	return {
+      enviando:false,
+      tipoUsuario: this.$route.params.id.split('-'),
+      usuario: {
         id:null,
         nome_completo:null,
         cpf:null,
@@ -262,84 +206,130 @@ export default {
         cep:null,
         telefone:null,
         email:null,
-        senha:null
        }
     }
-  },
-methods:{
-  async onSubmit() {
-    this.enviando=true;
-    if(this.confirmarSenha != this.aluno.senha){
-      this.enviando=false;
-      return;
-    };
-   await server.post('aluno',this.aluno)
-      .then((response) => {
-        if(response.status == 200){
-          this.$q.notify({
+   },
+	methods:{
+	mostrarUsuario(id){
+		if(this.tipoUsuario[0]== 'ALU'){
+			server.get(`aluno/${id}`)
+			.then(aluno => {
+			this.usuario = aluno.data[0];
+			})
+			.catch(() => {
+			this.$q.notify({
+	          color: 'red-5',
+	          textColor: 'white',
+	          icon: 'warning',
+	          message: 'Falha ao recuperar seus dados'
+	        })
+			})
+		}
+		else if(this.tipoUsuario[0]== 'PRO'){
+			server.get(`professor/${id}`)
+			.then(professor => {
+			 this.usuario = professor.data[0];	
+			})
+			.catch(() => {
+			this.$q.notify({
+	          color: 'red-5',
+	          textColor: 'white',
+	          icon: 'warning',
+	          message: 'Falha ao recuperar seus dados'
+	        })
+		})
+		}
+	},
+	async onSubmit() {
+		this.enviando = true;
+		if (this.tipoUsuario[0] == 'ALU'){
+									console.log(this.usuario);
+        await server.put(`aluno/${this.$route.params.id}`,this.usuario)
+        .then(() => {
+        	 this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
-          message: 'Cadastro concluído com sucesso'
+          message: 'Atualização concluída com sucesso'
         }),
-        this.enviando=false;
-        this.$router.push({path:'/'})
-        }
-      })
-      .catch(() => {
-        this.$q.notify({
+		this.enviando = false;
+        })
+        .catch(() =>{
+        	this.$q.notify({
           color: 'red-5',
           textColor: 'white',
           icon: 'warning',
-          message: 'Falha ao cadastrar'
+          message: 'Falha ao atualizar o cadastro'
         }),
-         this.enviando=false;
-      })
-    },
-    isValid () {
-      return this.confirmarSenha == this.aluno.senha
-    }
-  },
+		this.enviando = false;
+        })
+		}
+		else {
+
+		await server.put(`professor/${this.$route.params.id}`,this.usuario)
+        .then(() => {
+        	 this.$q.notify({
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'cloud_done',
+          message: 'Atualização concluída com sucesso'
+        }),
+        this.enviando = false;
+        })
+        .catch(() =>{
+        	this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Falha ao atualizar o cadastro'
+        }),
+		this.enviando = false;
+        })
+
+		} 
+	}
+	},
+  beforeMount() {
+  	this.mostrarUsuario(this.$route.params.id);
+  }
 
 }
 </script>
 <style>
-.q-page-container{
-  padding-top:0!important;
-}
-#sectionCadastroAluno .container {
+
+#sectionMeusDados .container {
     width:60%;
     margin-left:20%;
     margin-right:20%;
 }
-#sectionCadastroAluno .titulo{
+#sectionMeusDados .titulo{
   border-bottom:1px solid grey;
   margin-top: 2%;
 }
-#sectionCadastroAluno .titulo h5{
+#sectionMeusDados .titulo h5{
     margin-bottom:0;
     padding-bottom: 12px;
   }
-#sectionCadastroProfessor .nomeCompleto,.email{
+#sectionMeusDados .nomeCompleto,.email{
   width:84%;
   margin-top:43px;
 }
-#sectionCadastroAluno .row{
+#sectionMeusDados .row{
   display:flex;
 }
-#sectionCadastroAluno .margin-input{
+#sectionMeusDados .margin-input{
   margin-right:50px;
 }
-#sectionCadastroAluno .tamanho-input{
+#sectionMeusDados .tamanho-input{
   width:40%;
 }
-#sectionCadastroAluno .btnCadastro{
+#sectionMeusDados .btnCadastro{
   display:flex;
   justify-content: center;
   margin-top:5%;
   margin-bottom:5%;
 }
-#sectionCadastroAluno .nomeCompleto{
+#sectionMeusDados .nomeCompleto{
 margin-top: 4%;
 }
 </style>

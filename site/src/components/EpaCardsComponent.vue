@@ -1,5 +1,6 @@
 <template>
-  <div class="divCard">
+  <section class="sectionCard">
+    <div class="divCard">
   	 <q-card class="my-card">
        <QBtn type="a" :to="link" id="linkImagem"><img :src="imagem"></QBtn>
       <q-card-section class="q-pt-none">
@@ -10,6 +11,7 @@
       </q-card-section>
     </q-card>
   </div>
+  </section>
 </template>
 
 <script>
@@ -34,7 +36,7 @@ export default {
 </script>
 
 <style>
-.divCard{
+.sectionCard .divCard{
 	margin-left: 50px;
 	width: 311px;
 	margin-right: 50px;
@@ -42,32 +44,32 @@ export default {
   border: 2px solid rgb(71, 106, 74);
   margin-top: 10px;
 }
-.my-card{
+.sectionCard .my-card{
   border-radius: 0px;
 	background-color:rgb(71, 106, 74)!important;
 	box-shadow: none;
   width: 100%;
 	height: 100%;
 }
-.my-card img{
+.sectionCard .my-card img{
   width:100%;
 }
-.q-card__section{
+.sectionCard .q-card__section{
   margin-top:10px;
 }
-.divBtn{
+.sectionCard .divBtn{
   display:grid;
   margin-top: 3%;
   justify-content: center;
 }
-#linkImagem{
+.sectionCard #linkImagem{
   display:initial;
 
 }
-#linkImagem .q-btn__wrapper{
+.sectionCard #linkImagem .q-btn__wrapper{
   padding:0!important;
 }
-div.divBtn #btnParaCadastro{
+.sectionCard div.divBtn #btnParaCadastro{
       border: 2px solid white;
 }
 </style>

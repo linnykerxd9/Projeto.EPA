@@ -7,7 +7,7 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
     {
-      path:'/perguntasFrequentes',component: () => import('pages/perguntasFrequentes')
+      path:'perguntasFrequentes',component: () => import('pages/perguntasFrequentes')
     }
     ]
   },
@@ -17,26 +17,38 @@ const routes = [
     component: () => import('../layouts/Cadastro.vue'),
     children: [
       {
-        path: '/cadastro/aluno',
+        path: 'aluno',
         component: () => import('../components/cadastro/CadastroAluno.vue')
       },
         {
-        path: '/cadastro/professor',
+        path: 'professor',
         component: () => import('../components/cadastro/CadastroProfessor.vue')
       },
     ]
   },
 
   {
-    path: '/user',
-    component: () => import('../layouts/MainLayout.vue'),
+    path: '/user=:id',
+    component: () => import('../layouts/logadoLayout.vue'),
     children: [
-      {
-        path: '/user/mapa',
-        component: () => import('../pages/EpaMapa.vue')
-      },
+    {
+      path: 'mapa',
+      component: () => import('../pages/EpaMapa.vue')
+    },
+    {
+      path: "meus-dados",
+      component: () => import('../pages/EpaMeus-dados.vue')
+    },
+    {
+      path: "minhas-materias",
+      component: () => import('../pages/minhas-materias.vue')
+    },
+    {
+      path: "chat",
+      component: () => import('../pages/chat.vue')
+    }
     ]
-  },
+      },
   // Always leave this as last one,
   // but you can also remove it
   {

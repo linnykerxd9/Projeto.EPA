@@ -205,24 +205,24 @@ export default {
       //fazendo a primeira validação na tabela de aluno
       server.get(`aluno/${this.email}/${this.senha}`)
       .then(aluno => {
-        this.usuario = aluno.data
+        this.usuario = aluno.data[0]
       })
       .catch(err => console.log(err))
       //fazendo uma validação depois de 2 seg na tabela de professor
       setTimeout(() => {
         //fazendo a validação para ver se o usuario é undefined
-        if(this.usuario[0] == undefined){
+        if(this.usuario == undefined){
         server.get(`professor/${this.email}/${this.senha}`)
       .then(professor => {
-        this.usuario = professor.data
+        this.usuario = professor.data[0];
       })
         }
-         this.loading = false;
       },2000)
       //fazendo a validação final depois de 3 seg para saber se foi encontrado um usuario ou n
       setTimeout(() => {
-      if(this.usuario[0] != undefined){
-         this.$router.push({path:'/user/mapa'})
+        this.loading = false;
+      if(this.usuario != undefined){
+         this.$router.push({path:`/user=${this.usuario.id}/mapa`})
       }else{
         //mostrando mensagem de erro caso não encontre o usuario
          this.$q.notify({
