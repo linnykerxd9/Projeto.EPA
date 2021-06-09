@@ -218,10 +218,10 @@ export default {
         this.usuario = professor.data[0];
       })
         }
-         this.loading = false;
       },2000)
       //fazendo a validação final depois de 3 seg para saber se foi encontrado um usuario ou n
       setTimeout(() => {
+        this.loading = false;
       if(this.usuario != undefined){
          this.$router.push({path:`/user=${this.usuario.id}/mapa`})
       }else{

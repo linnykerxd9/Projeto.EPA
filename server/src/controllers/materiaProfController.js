@@ -1,5 +1,6 @@
 const materiaProf = require('../models').materiaProf;
-const Professor = require('../models').Aluno
+const Professor = require('../models').Professor;
+const Materia = require('../models').Materia;
 
 exports.listAll = (req, res) => {
     materiaProf.findAll()
@@ -27,6 +28,7 @@ exports.createOne = (req, res) => {
 }
 
 exports.listOne = (req, res) => {
+<<<<<<< HEAD
    MateriaProf.findAll(
         {
             where: {id:req.params.id},
@@ -37,6 +39,16 @@ exports.listOne = (req, res) => {
             ]
 
 })
+=======
+   materiaProf.findAll(
+       {
+           where: { idProfessor: req.params.id },
+           include: [
+            { model: Professor },
+            {model:Materia}
+           ]
+       })
+>>>>>>> bcddc47a9ca204f69afe739ebf52d4242f91a64a
    .then(materiaProf => res.send(materiaProf))
    .catch(err => res.send(err))
 }

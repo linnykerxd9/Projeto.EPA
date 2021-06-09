@@ -8,8 +8,9 @@ exports.listAll = (req, res) => {
 }
 exports.createOne = (req, res) => {
     const { id,idAula,idAluno,idProfessor,estrelas,comentario } = req.body;
+    
     config.findAll({where:{id:1}})
-.then(config => {
+    .then(config => {
 
         var preAvaliacao = convaliacaofig[0].dataValues.preAvaliacao;
         var  ultimoIdAvaliacao = config[0].dataValues.ultimoIdAvaliacao;

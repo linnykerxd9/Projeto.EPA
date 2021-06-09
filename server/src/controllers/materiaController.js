@@ -1,4 +1,5 @@
 const Materia = require('../models').Materia;
+const materiaProf = require('../models').materiaProf;
 
 exports.listAll = (req, res) => {
     Materia.findAll()
@@ -46,6 +47,18 @@ exports.updateOne = (req, res) => {
   })
   .catch(err => res.send(err))
 }
+<<<<<<< HEAD
 updateIdMateria = (idMateria) => {
      convaMateriafig.update({ultimoIdMateria: idMateria},{where:{id:1}})
+=======
+exports.deleteOne = (req, res) => {
+   Materia.destroy({cascade: true, where:{id:req.params.id}})
+      .then(materia => {
+         res.json({
+            message: "materia deletado com sucesso",
+            data: materia
+          })
+        })
+      .catch(err => console.log(err))
+>>>>>>> bcddc47a9ca204f69afe739ebf52d4242f91a64a
 }

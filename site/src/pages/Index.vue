@@ -1,5 +1,5 @@
 <template>
-<section id="sectionIndex">
+<section id="sectionIndex" padding>
   <EpaBannerComponent titulo="Ensino por Amor"
                       descricao='"A educação exige os maiores cuidados, porque influi sobre toda a vida"'
                       autor = "Sêneca"
