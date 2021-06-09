@@ -32,10 +32,6 @@ exports.createOne = (req, res) => {
 exports.listOne = (req, res) => {
     Professor.findAll(
         {where: {id:req.params.id},
-         include: [
-             {model: Professor}
-
-            ]
 })
     .then(professor => res.send(professor))
     .catch(err => res.send(err))

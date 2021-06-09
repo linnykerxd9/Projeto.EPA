@@ -36,12 +36,7 @@ exports.createOne = (req, res) => {
 
 exports.listOne = (req, res) => {
   Aluno.findAll(
-    {where: {id:req.params.id},
-     include: [
-             {model: Aluno}
-            ]
-
-})
+    {where: {id:req.params.id}})
   .then(Aluno => res.send(Aluno))
   .catch(err => {res.send(err)})
 

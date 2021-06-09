@@ -18,7 +18,7 @@ exports.createOne = (req, res) => {
         var ultimoIdMateriaProf = ultimoIdMateriaProf + 1;
         var id = `${preMateriaProf}-${ultimoIdMateriaProf}`;
 
-        updateIdAula(ultimoIdAula);
+        updateIdMateriaProf(ultimoIdMateriaProf);
 
     materiaProf.create({  id,idMateria,idProfessor })
     .then(materiaProf => res.send(materiaProf))
@@ -28,18 +28,6 @@ exports.createOne = (req, res) => {
 }
 
 exports.listOne = (req, res) => {
-<<<<<<< HEAD
-   MateriaProf.findAll(
-        {
-            where: {id:req.params.id},
-            include: [
-             {model: Professor},
-             {model: Materia},
-             {model: materiaProf}
-            ]
-
-})
-=======
    materiaProf.findAll(
        {
            where: { idProfessor: req.params.id },
@@ -48,11 +36,10 @@ exports.listOne = (req, res) => {
             {model:Materia}
            ]
        })
->>>>>>> bcddc47a9ca204f69afe739ebf52d4242f91a64a
    .then(materiaProf => res.send(materiaProf))
    .catch(err => res.send(err))
 }
-updateIdMateriaProf = (idAvaliacao) => {
+updateIdMateriaProf = (idMateriaProf) => {
      config.update({ultimoIdMateriaProf: idMateriaProf},{where:{id:1}})
 }
 

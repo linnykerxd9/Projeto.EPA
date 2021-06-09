@@ -7,7 +7,7 @@ exports.listAll = (req, res) => {
     .catch(err => res.send(err))
 }
 exports.createOne = (req, res) => {
-    const { id,nome,valorMateria,escolaridade } = req.body;
+    const { id,nome,valorMateria,escolaridade,serie } = req.body;
     
     config.findAll({where: {id:1}})
     .then(config => {
@@ -18,7 +18,7 @@ exports.createOne = (req, res) => {
         var id = `${preMateria}-${ultimoIdMateria}`;
    
         updateIdMateria(ultimoIdMateria);
-    Materia.create({  id,nome,valorMateria,escolaridade })
+    Materia.create({  id,nome,valorMateria,escolaridade,serie })
     .then(materia => res.send(materia))
     .catch(err => res.send(err))
 })
@@ -26,20 +26,14 @@ exports.createOne = (req, res) => {
 }
 exports.listOne = (req, res) => {
 	Materia.findAll(
-        {
-            where: {id:req.params.id},
-            include: [
-             {model: Materia}
-            ]
-
-})
+        {where: {id:req.params.id}})
 
 	.then(materia => res.send(materia))
 	.catch(err => res.send(err))
 }
 exports.updateOne = (req, res) => {
-  const{nome,ValorMateria,escolaridade} = req.body;
-  Materia.update({nome,ValorMateria,escolaridade},{where:{id:req.params.id}})
+  const{nome,ValorMateria,escolaridade,serie} = req.body;
+  Materia.update({nome,ValorMateria,escolaridade,serie},{where:{id:req.params.id}})
   .then(materia => {
   	res.json({
   		message: "Matéria atualizada"
@@ -47,18 +41,16 @@ exports.updateOne = (req, res) => {
   })
   .catch(err => res.send(err))
 }
-<<<<<<< HEAD
-updateIdMateria = (idMateria) => {
-     convaMateriafig.update({ultimoIdMateria: idMateria},{where:{id:1}})
-=======
 exports.deleteOne = (req, res) => {
-   Materia.destroy({cascade: true, where:{id:req.params.id}})
-      .then(materia => {
+  Materia.destroy({cascade: true, where:{id:req.params.id}})
+  .then(materia => {
          res.json({
             message: "materia deletado com sucesso",
             data: materia
           })
         })
       .catch(err => console.log(err))
->>>>>>> bcddc47a9ca204f69afe739ebf52d4242f91a64a
+}
+updateIdMateria = (idMateria) => {
+  convaMateriafig.update({ ultimoIdMateria: idMateria }, { where: { id: 1 } })
 }
