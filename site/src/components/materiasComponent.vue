@@ -15,11 +15,23 @@
           </div>
         </div>
     </div>
-        <q-separator vertical class="margin10"/>
-      <div class="btnExcluir">
-        <q-btn color="red" label="Excluir" @click="excluir(idMateria)"/>
+        <q-separator vertical class="margin10" v-if="$route.fullPath.includes('/minhas-materias')"/>
+      <div class="btnExcluir" v-if="$route.fullPath.includes('/minhas-materias')">
+        <q-btn color="red" label="Excluir" @click="modalExcluir = true"/>
       </div>
     </div>
+    <q-dialog v-model="modalExcluir" persistent>
+      <q-card>
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">Tem certeza que deseja excluir essa matéria?</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn label="Excluir" color="red" @click="excluir(idMateria)" v-close-popup />
+          <q-btn label="Cancelar" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </section>
 </template>
 
@@ -27,7 +39,9 @@
 export default {
   name: 'EpaMateriasComponent',
   data () {
-    return {}
+    return {
+      modalExcluir: false,
+    }
   },
   props: ['nome','tipo','valor','serie','idMateria'],
   methods: {
