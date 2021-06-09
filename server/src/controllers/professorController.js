@@ -10,6 +10,7 @@ exports.createOne = (req, res) => {
     const {
         id,email, nome_completo, telefone, cpf, bairro, cep, cidade, dataNascimento,sexo, estado, rua,
         contaBanco, senha } = req.body;
+        
         config.findAll({where:{id:1}})
          .then(config => {
             var preProfessor = config[0].dataValues.preProfessor;
@@ -29,7 +30,13 @@ exports.createOne = (req, res) => {
 }
 
 exports.listOne = (req, res) => {
-    Professor.findAll({where: {id:req.params.id}})
+    Professor.findAll(
+        {where: {id:req.params.id},
+         include: [
+             {model: Professor}
+
+            ]
+})
     .then(professor => res.send(professor))
     .catch(err => res.send(err))
 
