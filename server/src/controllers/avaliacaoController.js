@@ -1,5 +1,6 @@
 const Avaliacao = require('../models').Avaliacao;
 const Aula = require('../models').Aula;
+const config = require('../models').Config;
 
 exports.listAll = (req, res) => {
     Avaliacao.findAll()

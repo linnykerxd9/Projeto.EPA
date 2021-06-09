@@ -1,4 +1,6 @@
 const Doacao = require('../models').Doacao;
+const config = require('../models').Config;
+
 exports.listAll = (req, res) => {
     Doacao.findAll()
     .then(doacao => res.send(doacao))

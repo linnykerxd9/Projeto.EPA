@@ -1,6 +1,7 @@
 const materiaProf = require('../models').materiaProf;
 const Professor = require('../models').Professor;
 const Materia = require('../models').Materia;
+const config = require('../models').Config;
 
 exports.listAll = (req, res) => {
     materiaProf.findAll()
@@ -39,7 +40,7 @@ exports.listOne = (req, res) => {
    .then(materiaProf => res.send(materiaProf))
    .catch(err => res.send(err))
 }
-updateIdMateriaProf = (idMateriaProf) => {
-     config.update({ultimoIdMateriaProf: idMateriaProf},{where:{id:1}})
+updateIdMateriaProf = (ultimoIdMateriaProf) => {
+     config.update({ultimoIdMateriaProf: ultimoIdMateriaProf},{where:{id:1}})
 }
 

@@ -1,5 +1,6 @@
 const pedidoDoacao = require('../models').pedidoDoacao;
 const Aluno = require('../models').Aluno;
+const config = require('../models').Config;
 exports.listAll = (req, res) => {
     pedidoDoacao.findAll()
     .then(pedidoDoacao => res.send(pedidoDoacao))

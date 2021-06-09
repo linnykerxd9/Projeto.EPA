@@ -2,6 +2,7 @@ const Aula = require('../models').Aula;
 const Professor = require('../models').Professor;
 const Aluno = require('../models').Aluno;
 const Materia = require('../models').Materia;
+const config = require('../models').Config;
 
 exports.listAll = (req, res) => {
     Aula.findAll()

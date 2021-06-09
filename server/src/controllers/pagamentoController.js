@@ -1,5 +1,6 @@
 const Pagamento = require('../models').Pagamento;
-const Status = require('../models').Status
+const Status = require('../models').Status;
+const config = require('../models').Config;
 
 exports.listAll = (req, res) => {
     Pagamento.findAll()

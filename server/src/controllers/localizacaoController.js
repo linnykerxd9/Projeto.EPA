@@ -1,5 +1,7 @@
 const Localizacoes = require('../models').Localizacoes;
 const Professor = require('../models').Professor;
+const config = require('../models').Config;
+
 exports.listAll = (req, res) => {
     Localizacoes.findAll()
     .then(localizacoes => res.send(localizacoes))

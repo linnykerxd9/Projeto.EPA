@@ -1,5 +1,6 @@
 const Materia = require('../models').Materia;
 const materiaProf = require('../models').materiaProf;
+const config = require('../models').Config;
 
 exports.listAll = (req, res) => {
     Materia.findAll()
@@ -52,5 +53,5 @@ exports.deleteOne = (req, res) => {
       .catch(err => console.log(err))
 }
 updateIdMateria = (idMateria) => {
-  convaMateriafig.update({ ultimoIdMateria: idMateria }, { where: { id: 1 } })
+  config.update({ ultimoIdMateria: idMateria }, { where: { id: 1 } })
 }
