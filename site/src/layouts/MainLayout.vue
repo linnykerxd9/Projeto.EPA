@@ -243,8 +243,6 @@ export default {
 .header {
   width: 100%;
   background: #6bb1bb;
-  top: 0;
-  position: fixed;
   padding: 5px 25px;
 }
 
