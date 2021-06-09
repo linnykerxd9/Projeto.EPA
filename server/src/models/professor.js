@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       })
       Professor.hasMany(models.materiaProf, {
         foreignKey: "idProfessor",
-        sourceKey:"id"
+        sourceKey:"id",
+        onDelete: 'cascade',
+        hooks:true
       })
     }
   };
