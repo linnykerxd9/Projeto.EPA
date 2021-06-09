@@ -23,6 +23,7 @@
                           @filter="filterFn"
                           style="width: 250px"
                           behavior="menu"
+                          :rules="[val => !!val || 'Campo é obrigatório']"
                         >
                           <template v-slot:no-option>
                             <q-item>
@@ -45,6 +46,7 @@
                           unmasked-value
                           input-class="text-right"
                           style="width: 250px"
+                          :rules="[val => !!val || 'Campo é obrigatório']"
                         />
                      </div>
                    </div>
@@ -55,6 +57,7 @@
                                   v-model="materia.escolaridade"
                                   :options="opcoesEscolaridade"
                                   label="Escolaridade"
+                                  :rules="[val => !!val || 'Campo é obrigatório']"
                                   />
                       </div>
                       <div class="serie">
@@ -64,6 +67,7 @@
                                   :options="opcoesSerie"
                                   label="Série"
                                   emit-value
+                                  :rules="[val => !!val || 'Campo é obrigatório']"
                                   />
                        </div>
                     </div>
@@ -91,6 +95,7 @@
                                       :valor="materia.Materium.valorMateria"
                                       :idMateria="materia.Materium.id"
                                       :tipo="materia.Materium.escolaridade"
+                                      @deletado="atualizarLista"
                      ></materiasComponent>
                 </div>
             </div>
@@ -167,11 +172,7 @@ export default {
       },
     async recuperarMaterias() {
     await server.get(`materiaProf/${this.idProfessor}`)
-    .then(materia => {
-       this.materias = materia.data 
-      console.log(this.materias);
-      console.log(this.idProfessor);
-       })
+    .then(materia => { this.materias = materia.data })
     .catch(() => {
         this.$q.notify({
           color: 'red-5',
@@ -180,6 +181,11 @@ export default {
           message: 'Falha ao recuperar suas matérias'
         })
       })
+    },
+    atualizarLista(mensagem) {
+      if(mensagem.deletado == true){
+        this.recuperarMaterias();
+      }
     }
   },
   beforeMount() {
@@ -225,7 +231,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-} 
+}
 #sectionMinhasMaterias .meusCardsContent .meusCardsColumn{
     width: 50%;
     display: flex;

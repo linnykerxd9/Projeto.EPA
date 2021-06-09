@@ -27,7 +27,7 @@
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn label="Excluir" color="red" @click="excluir(idMateria)" v-close-popup />
+          <q-btn label="Excluir" color="red" @click="excluir(idMateria)"  v-close-popup />
           <q-btn label="Cancelar" color="primary" v-close-popup />
         </q-card-actions>
       </q-card>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import {server} from 'boot/axios'
 export default {
   name: 'EpaMateriasComponent',
   data () {
@@ -45,8 +46,28 @@ export default {
   },
   props: ['nome','tipo','valor','serie','idMateria'],
   methods: {
-    excluir(id){
-      console.log(id);
+    async excluir(id){
+     await server.delete(`materia/${id}`)
+      .then(() => {
+         this.$q.notify({
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'cloud_done',
+          message: 'Matéria excluida com sucesso'
+        }),
+        this.enviarMensagem();
+      })
+      .catch(() => {
+          this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Falha ao Excluir a matéria'
+        })
+      })
+    },
+    enviarMensagem () {
+      this.$emit('deletado', { deletado: true})
     }
   },
 }
