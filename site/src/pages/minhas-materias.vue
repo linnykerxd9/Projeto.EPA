@@ -38,12 +38,8 @@
                      <div class="materiaValor">
                          <q-input
                           filled
-                          v-model="materia.valor"
+                          v-model="materia.valorMateria"
                           label="Valor da aula"
-                          mask="#.##"
-                          fill-mask="0"
-                          reverse-fill-mask
-                          unmasked-value
                           input-class="text-right"
                           style="width: 250px"
                           :rules="[val => !!val || 'Campo é obrigatório']"
@@ -140,10 +136,11 @@ export default {
       opcoesEscolaridade: escolaridades,
       opcoesSerie: series,
       materia:{
+        id:null,
         nome:null,
+        valorMateria:null,
         escolaridade: null,
         serie: null,
-        valor:null,
       },
       materias:[],
     }
@@ -161,8 +158,19 @@ export default {
         this.opcoesMateria = materias.filter(v => v.toLowerCase().indexOf(needle) > -1)
       })
     },
-    onSubmit(){
-      console.log(this.materia);
+    async onSubmit(){
+      var idMateria;
+      await server.post(`materia`,this.materia)
+      .then(materia => idMateria = materia.data.id)
+      .catch(err => console.log(err));
+      var materiaProf = {
+        idMateria:idMateria,
+        idProfessor:this.idProfessor,
+      }
+      await server.post("materiaProf",materiaProf)
+      .then(() => {
+        this.recuperarMaterias();
+      })
     },
     onReset(){
       this.materia.nome = null;
