@@ -77,7 +77,7 @@
               </div>
             </div>
             <!-- email -->
-            <div">
+            <div>
               <h3>Estude ou dê aulas perto de casa, receba novidades no seu email:</h3>
               <div><input type="digite seu email aqui"></div>
             </div>
@@ -186,8 +186,8 @@ export default {
   margin: 14px 0 0px 30px;
 }
 
-.subtitulo:hover {
-  background: #fff;
+.subtitulo:hover::after{
+  background-color: #fff;
 }
 .link-footer {
   margin-left: 4%;
