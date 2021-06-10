@@ -13,12 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Materia.hasMany(models.materiaProf, {
         foreignKey: "idMateria",
-        sourceKey:"id"
+        sourceKey:"id",
+        onDelete: 'cascade',
+        hooks:true
       })
     }
   };
   Materia.init({
     nome: DataTypes.STRING,
+    serie: DataTypes.STRING,
     valorMateria: DataTypes.INTEGER,
     escolaridade: DataTypes.STRING,
   }, {

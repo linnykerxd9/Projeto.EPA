@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       })
       Professor.hasMany(models.materiaProf, {
         foreignKey: "idProfessor",
-        sourceKey:"id"
+        sourceKey:"id",
+        onDelete: 'cascade',
+        hooks:true
       })
     }
   };
@@ -37,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     bairro: DataTypes.STRING,
     cep: DataTypes.STRING,
     cidade: DataTypes.STRING,
-    dataNascimento: DataTypes.DATE,
+    dataNascimento: DataTypes.STRING,
     sexo: DataTypes.STRING,
     estado: DataTypes.STRING,
     rua: DataTypes.STRING,

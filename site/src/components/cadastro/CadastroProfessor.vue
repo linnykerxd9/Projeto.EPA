@@ -266,15 +266,14 @@ export default {
     }
   },
 methods:{
-  onSubmit() {
+  async onSubmit() {
     this.enviando=true;
     if(this.confirmarSenha != this.professor.senha){
       this.enviando=false;
       return;
     };
-   server.post('professor',this.professor)
+   await server.post('professor',this.professor)
       .then((response) => {
-        console.log(response);
         if(response.status == 200){
           this.$q.notify({
           color: 'green-4',
@@ -283,6 +282,7 @@ methods:{
           message: 'Cadastro concluído com sucesso'
         }),
         this.enviando=false;
+        this.$router.push({path:'/'})
         }
       })
       .catch(() => {

@@ -8,5 +8,8 @@ module.exports = app => {
 
     app.route('/professor/:id')
     .get(professorController.listOne)
-    .put(professorController.updateOne)
+        .put(professorController.updateOne)
+    
+    app.route('/professor/:email/:senha')
+    .get(professorController.getLogin)
 }

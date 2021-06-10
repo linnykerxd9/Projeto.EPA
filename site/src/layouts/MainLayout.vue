@@ -13,7 +13,7 @@
             <li><a href="#">Sobre</a></li>
             <li><span class="dot"></span><a href="#">Como Começar</a></li>
             <li><span class="dot"></span><a href="#">Contato</a></li>
-            <li><span class="dot subtitulo"></span><a href="#">Login</a></li>
+            <li><span class="dot subtitulo"></span><a href="#"  @click="modalLogin = true">Login</a></li>
           </ul>
         </div>
       </q-toolbar>
@@ -108,25 +108,141 @@
         </div>
       </div>
     </q-footer>
+
+
+
+    <q-dialog v-model="modalLogin">
+      <q-card style="width: 800px; max-width: 80vw; height:400px; border-radius:20px; overflow:hidden;">
+      <div class="row">
+        <div class="bem-vindo">
+          <q-card-section>
+            <div class="fotoBemVindo">
+                <img src="img/fotoLogoLogin.png">
+            </div>
+            <div class="titulo">
+              <h5>Seja bem vindo ao EPA!</h5>
+            </div>
+          </q-card-section>
+        </div>
+        <div class="login">
+          <q-card-section>
+            <h4><strong>LOGIN</strong></h4>
+            <div class="divLoginOutros">
+              <ul>
+                <li>
+                  <a href="#">facebook</a>
+                </li>
+                <li>
+                  <a href="#">instagram</a>
+                </li>
+                <li>
+                  <a href="#">google plus</a>
+                </li>
+              </ul>
+            </div>
+             <p class="pInformacoes">
+                      ou use seu email para logar
+            </p>
+          </q-card-section>
+          <q-card-section class="card-section-Inputs">
+            <div class="divInputEmail">
+                <q-input square
+                         filled
+                         v-model="email"
+                         label="Email"
+                         :rules="[val => !!val || 'Campo obrigatório']">
+              </q-input>
+            </div>
+            <div class="divInputSenha">
+                 <q-input v-model="senha"
+                          filled
+                          :type="isPwd ? 'password' : 'text'"
+                          label="Senha"
+                          :rules="[val => !!val || 'Campo obrigatório']">
+           <template v-slot:append>
+              <q-icon
+                :name="isPwd ? 'visibility_off' : 'visibility'"
+                class="cursor-pointer"
+                @click="isPwd = !isPwd"
+              />
+          </template>
+         </q-input>
+          <q-card-actions align="center">
+            <q-btn :loading="loading" class="btn-entrar" @click="logar" style="width: 150px">
+                Entrar
+            <template v-slot:loading>
+              Carregando...<q-spinner-hourglass class="on-left" />
+            </template>
+          </q-btn>
+          </q-card-actions>
+            <p class="pInformacoes">esqueceu sua senha <span> <a href="#"> clique</a></span></p>
+        </div>
+          </q-card-section>
+        </div>
+        </div>
+      </q-card>
+    </q-dialog>
   </q-layout>
 </template>
 
 <script>
+import { server } from 'boot/axios'
 export default {
   name: "MainLayout",
   data() {
-    return {};
+    return {
+      modalLogin: false,
+      email:null,
+      senha:null,
+      isPwd:true,
+      loading:false,
+      usuario:null,
+    };
   },
+   methods: {
+    logar() {
+      //colocando o loading do botão para true para começar a animação
+      this.loading = true
+      //fazendo a primeira validação na tabela de aluno
+      server.get(`aluno/${this.email}/${this.senha}`)
+      .then(aluno => {
+        this.usuario = aluno.data[0]
+      })
+      .catch(err => console.log(err))
+      //fazendo uma validação depois de 2 seg na tabela de professor
+      setTimeout(() => {
+        //fazendo a validação para ver se o usuario é undefined
+        if(this.usuario == undefined){
+        server.get(`professor/${this.email}/${this.senha}`)
+      .then(professor => {
+        this.usuario = professor.data[0];
+      })
+        }
+      },2000)
+      //fazendo a validação final depois de 3 seg para saber se foi encontrado um usuario ou n
+      setTimeout(() => {
+        this.loading = false;
+      if(this.usuario != undefined){
+         this.$router.push({path:`/user=${this.usuario.id}/mapa`})
+      }else{
+        //mostrando mensagem de erro caso não encontre o usuario
+         this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Login ou senha incorretos'
+        })
+      }
+      },3000)
+    }
+  }
 };
 </script>
 
 <style>
-
 .header {
   width: 100%;
   background: #6bb1bb;
-  top: 0;
-  position: fixed;
   padding: 5px 25px;
 }
 
@@ -227,7 +343,7 @@ export default {
 .parceiros p {
    color: #000;
   font-size: 12px;
-  
+
 }
 
 .parceiros{
@@ -243,6 +359,82 @@ export default {
    color: #000;
   font-size: 12px;
 }
+
+/* parte do modal de login*/
+.q-dialog--modal .row{
+  height:100%;
+}
+.q-dialog--modal .q-card__section{
+  padding-bottom:0;
+  padding-top:0;
+}
+.q-dialog--modal .q-btn__content{
+  padding-top: 5%;
+}
+.q-dialog--modal .bem-vindo{
+  width:45%;
+  background-color:rgb(107, 177, 187);
+  height:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.q-dialog--modal .pInformacoes{
+  margin: 0 0 16px;
+  display: flex;
+  justify-content: center;
+}
+.q-dialog--modal .login{
+  width:55%;
+}
+.q-dialog--modal .divInputEmail{
+  margin-bottom:3%;
+}
+.q-dialog--modal .divInputEmail,.divInputSenha{
+  width:80%;
+  margin-left: 10%;
+}
+.q-dialog--modal .divLoginOutros{
+      display: flex;
+    justify-content: center;
+    padding-right: 5%;
+}
+.q-dialog--modal div.bem-vindo div.titulo{
+  color:white;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.q-dialog--modal div.bem-vindo div.fotoBemVindo{
+  display: flex;
+  justify-content: center;
+}
+.q-dialog--modal div h4{
+  margin-bottom:0;
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+}
+.q-dialog--modal .btn-entrar{
+  background-color:rgb(107, 177, 187);
+  border-radius:20px;
+  color:rgb(97, 76, 76);
+}
+.q-dialog--modal ul li{
+  list-style: none;
+	width: 40px	;
+	height: 40px;
+	margin-right:13px ;
+	float: left;
+}
+.q-dialog--modal ul li a{
+	display: 	block;
+	height: 	100%;
+	text-indent: 	-99999em;
+  border:1px solid grey;
+  border-radius:50px;
+}
+.q-dialog--modal ul li:nth-child(1) a{background-image:url('../../public/img/facebook.png');background-position: 49% 50%;}
+.q-dialog--modal ul li:nth-child(2) a{background-image:url('../../public/img/instagram.png');background-position: 49% 50%;}
+.q-dialog--modal ul li:nth-child(3) a{background-image:url('../../public/img/google-plus.png');background-position: 49% 50%;}
 </style>
 
 
