@@ -61,7 +61,7 @@ const menu = [
   },
    {
     prof:true,
-    link:"#",
+    link:"localizacoes",
     fundo:"img/pino-de-localizacao.svg",
     texto:"Minhas localizações"
   },

@@ -169,7 +169,7 @@ const menu = [
   {
     menu:"professor",
     icone:"room",
-    link:"#",
+    link:"localizacoes",
     nome:"Localizações"
   },
   {
@@ -217,7 +217,7 @@ export default {
         alert("Não autenticado");
         this.$router.push({path:'/'})
       }
-    }
+    },
   },
   beforeMount(){
     this.validacao(this.id);

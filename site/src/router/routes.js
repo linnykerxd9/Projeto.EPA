@@ -8,15 +8,14 @@ const routes = [
     {
       path:'perguntasFrequentes',component: () => import('pages/perguntasFrequentes')
     },
-
      {
     path: "/agenda",
     component: () => import('../pages/agenda.vue')
-  }
-    ]
+    },
+  ]
   },
 
-   
+
 
   {
     path: '/cadastro',
@@ -47,13 +46,17 @@ const routes = [
     {
       path: "minhas-materias",
       component: () => import('../pages/minhas-materias.vue')
+    },
+    {
+      path:"localizacoes",
+      component: () => import('pages/localizacoes.vue')
     }
-    ]
-      },
-   
+  ]
+},
 
-  // Always leave this as last one,
-  // but you can also remove it
+
+// Always leave this as last one,
+// but you can also remove it
   {
     path: '*',
     component: () => import('pages/Error404.vue')
