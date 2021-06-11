@@ -42,16 +42,10 @@ const routes = [
       component: () => import('../pages/minhas-materias.vue')
     },
     {
-<<<<<<< HEAD
       path: "perfil",
       component: () => import('../pages/perfil.vue')
     },
-
-    ]
-      },
-
-   
-=======
+   {
       path: "chat",
       component: () => import('../pages/chat.vue')
     },
@@ -66,7 +60,6 @@ const routes = [
   ]
 },
 
->>>>>>> 18ee2065b6a3367a1c6b8e49421d71dea57000f0
 
 // Always leave this as last one,
 // but you can also remove it
