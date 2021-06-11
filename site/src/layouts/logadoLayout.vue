@@ -163,7 +163,7 @@ const menu = [
   {
     menu:"todos",
     icone:"question_answer",
-    link:"#",
+    link:"chat",
     nome:"Chat"
   },
   {

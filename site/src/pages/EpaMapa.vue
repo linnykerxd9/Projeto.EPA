@@ -43,7 +43,7 @@ const menu = [
   },
   {
     prof:false,
-    link:"#",
+    link:"chat",
     fundo:"img/bater-papo.svg",
     texto:"Chats"
   },
