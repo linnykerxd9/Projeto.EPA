@@ -35,6 +35,9 @@ module.exports = {
       sexo:{
         type: Sequelize.STRING
       },
+      sobre:{
+        type: Sequelize.STRING
+      },
       estado: {
         type: Sequelize.STRING
       },
