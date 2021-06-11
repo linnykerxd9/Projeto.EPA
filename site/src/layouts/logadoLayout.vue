@@ -135,6 +135,7 @@
 
 <script>
 import {server} from 'boot/axios'
+import {  SessionStorage } from 'quasar'
 const menu = [
    {
      menu:"todos",
@@ -221,7 +222,10 @@ export default {
   },
   beforeMount(){
     this.validacao(this.id);
-  }
+  },
+  mounted() {
+    console.log("teste")
+  },
 }
 </script>
 

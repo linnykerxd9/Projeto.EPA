@@ -172,8 +172,8 @@
           :rules="[
           val => val && val.length > 0 || 'O campo não pode ser nulo']"
          />
-        </div>                   
-          
+        </div>
+
 
       <div class="btnCadastro">
          <q-btn label="Atualizar" type="submit" color="primary"  :loading="enviando" />
@@ -210,35 +210,8 @@ export default {
     }
    },
 	methods:{
-	mostrarUsuario(id){
-		if(this.tipoUsuario[0]== 'ALU'){
-			server.get(`aluno/${id}`)
-			.then(aluno => {
-			this.usuario = aluno.data[0];
-			})
-			.catch(() => {
-			this.$q.notify({
-	          color: 'red-5',
-	          textColor: 'white',
-	          icon: 'warning',
-	          message: 'Falha ao recuperar seus dados'
-	        })
-			})
-		}
-		else if(this.tipoUsuario[0]== 'PRO'){
-			server.get(`professor/${id}`)
-			.then(professor => {
-			 this.usuario = professor.data[0];	
-			})
-			.catch(() => {
-			this.$q.notify({
-	          color: 'red-5',
-	          textColor: 'white',
-	          icon: 'warning',
-	          message: 'Falha ao recuperar seus dados'
-	        })
-		})
-		}
+	mostrarUsuario(){
+    this.usuario = this.$q.sessionStorage.getItem("usuario")
 	},
 	async onSubmit() {
 		this.enviando = true;
@@ -252,7 +225,8 @@ export default {
           icon: 'cloud_done',
           message: 'Atualização concluída com sucesso'
         }),
-		this.enviando = false;
+		    this.enviando = false;
+        this.$q.sessionStorage.set("usuario", this.usuario)
         })
         .catch(() =>{
         	this.$q.notify({
@@ -261,7 +235,7 @@ export default {
           icon: 'warning',
           message: 'Falha ao atualizar o cadastro'
         }),
-		this.enviando = false;
+        this.enviando = false;
         })
 		}
 		else {
@@ -275,6 +249,7 @@ export default {
           message: 'Atualização concluída com sucesso'
         }),
         this.enviando = false;
+          this.$q.sessionStorage.set("usuario", this.usuario)
         })
         .catch(() =>{
         	this.$q.notify({
@@ -283,14 +258,14 @@ export default {
           icon: 'warning',
           message: 'Falha ao atualizar o cadastro'
         }),
-		this.enviando = false;
+	    	this.enviando = false;
         })
 
-		} 
+		}
 	}
 	},
   beforeMount() {
-  	this.mostrarUsuario(this.$route.params.id);
+  	this.mostrarUsuario();
   }
 
 }
@@ -298,9 +273,9 @@ export default {
 <style>
 
 #sectionMeusDados .container {
-    width:60%;
-    margin-left:20%;
-    margin-right:20%;
+    width:60%!important;
+    margin-left:20%!important;
+    margin-right:20%!important;
 }
 #sectionMeusDados .titulo{
   border-bottom:1px solid grey;
