@@ -1,5 +1,6 @@
 
 const routes = [
+
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
@@ -7,17 +8,8 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
     {
       path:'perguntasFrequentes',component: () => import('pages/perguntasFrequentes')
-    },
-
-     {
-    path: "/agenda",
-    component: () => import('../pages/agenda.vue')
-  }
-    ]
-  },
-
-   
-
+    }
+  ]},
   {
     path: '/cadastro',
     component: () => import('../layouts/Cadastro.vue'),
@@ -32,13 +24,14 @@ const routes = [
       },
     ]
   },
+
   {
     path: '/user=:id',
     component: () => import('../layouts/logadoLayout.vue'),
     children: [
-      {
-        path: 'mapa',
-        component: () => import('../pages/EpaMapa.vue')
+    {
+      path: 'mapa',
+      component: () => import('../pages/EpaMapa.vue')
     },
     {
       path: "meus-dados",
@@ -49,6 +42,7 @@ const routes = [
       component: () => import('../pages/minhas-materias.vue')
     },
     {
+<<<<<<< HEAD
       path: "perfil",
       component: () => import('../pages/perfil.vue')
     },
@@ -57,9 +51,25 @@ const routes = [
       },
 
    
+=======
+      path: "chat",
+      component: () => import('../pages/chat.vue')
+    },
+    {
+      path:"localizacoes",
+      component: () => import('pages/localizacoes.vue')
+    },
+    {
+    path: "agenda",
+    component: () => import('../pages/agenda.vue')
+    },
+  ]
+},
 
-  // Always leave this as last one,
-  // but you can also remove it
+>>>>>>> 18ee2065b6a3367a1c6b8e49421d71dea57000f0
+
+// Always leave this as last one,
+// but you can also remove it
   {
     path: '*',
     component: () => import('pages/Error404.vue')

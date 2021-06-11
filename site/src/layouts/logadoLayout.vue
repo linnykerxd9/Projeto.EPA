@@ -135,6 +135,7 @@
 
 <script>
 import {server} from 'boot/axios'
+import {  SessionStorage } from 'quasar'
 const menu = [
    {
      menu:"todos",
@@ -157,19 +158,19 @@ const menu = [
   {
     menu:"todos",
     icone:"event",
-    link:"#",
+    link:"agenda",
     nome:"Agenda"
   },
   {
     menu:"todos",
     icone:"question_answer",
-    link:"#",
+    link:"chat",
     nome:"Chat"
   },
   {
     menu:"professor",
     icone:"room",
-    link:"#",
+    link:"localizacoes",
     nome:"Localizações"
   },
   {
@@ -217,11 +218,11 @@ export default {
         alert("Não autenticado");
         this.$router.push({path:'/'})
       }
-    }
+    },
   },
   beforeMount(){
     this.validacao(this.id);
-  }
+  },
 }
 </script>
 

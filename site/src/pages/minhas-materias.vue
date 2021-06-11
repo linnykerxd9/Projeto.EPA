@@ -11,6 +11,9 @@
                       class="q-gutter-md"
                 >
                 <div class="materiaCreateContent">
+                  <div class="center">
+                       <h5>Crie sua matéria que irá ensinar</h5>
+                   </div>
                    <div class="materiaInformacoes">
                       <div class="materiaNome">
                         <q-select
@@ -176,7 +179,7 @@ export default {
       this.materia.nome = null;
       this.materia.escolaridade = null;
       this.materia.serie = null;
-      this.materia.valor = null;
+      this.materia.valorMateria = null;
       },
     async recuperarMaterias() {
     await server.get(`materiaProf/${this.idProfessor}`)
@@ -194,10 +197,19 @@ export default {
       if(mensagem.deletado == true){
         this.recuperarMaterias();
       }
+    },
+     validarRotas() {
+      const id = this.$route.params.id.split('-');
+      const rotaMaterias = this.$route.fullPath.includes('/minhas-materias');
+      if(id[0] == "ALU" && rotaMaterias){
+         alert("Não Autorizado");
+        this.$router.push({path:'mapa'})
+      }
     }
   },
   beforeMount() {
     this.recuperarMaterias();
+    this.validarRotas();
   },
 }
 </script>
@@ -208,6 +220,9 @@ export default {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+#sectionMinhasLocalizacoes h5 {
+  margin:0;
 }
 #sectionMinhasMaterias .column{
     flex-direction: column;
