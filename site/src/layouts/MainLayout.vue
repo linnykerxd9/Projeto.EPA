@@ -206,6 +206,9 @@ export default {
       server.get(`aluno/${this.email}/${this.senha}`)
       .then(aluno => {
         this.usuario = aluno.data[0]
+        if(this.usuario != undefined){
+         this.$q.sessionStorage.set("usuario", this.usuario);
+        }
       })
       .catch(err => console.log(err))
       //fazendo uma validação depois de 2 seg na tabela de professor
@@ -215,6 +218,9 @@ export default {
         server.get(`professor/${this.email}/${this.senha}`)
       .then(professor => {
         this.usuario = professor.data[0];
+        if(this.usuario != undefined){
+         this.$q.sessionStorage.set("usuario", this.usuario);
+        }
       })
         }
       },2000)
@@ -242,8 +248,6 @@ export default {
 .header {
   width: 100%;
   background: #6bb1bb;
-  top: 0;
-  position: fixed;
   padding: 5px 25px;
 }
 

@@ -8,10 +8,12 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
     {
       path:'perguntasFrequentes',component: () => import('pages/perguntasFrequentes')
-    }
-    ]
-  },
-
+    },
+     {
+    path: "/agenda",
+    component: () => import('../pages/agenda.vue')
+    },
+  ]},
   {
     path: '/cadastro',
     component: () => import('../layouts/Cadastro.vue'),
@@ -46,15 +48,23 @@ const routes = [
     {
       path: "chat",
       component: () => import('../pages/chat.vue')
-    }
-    ]
-      },
-  // Always leave this as last one,
-  // but you can also remove it
+    },
+    {
+      path:"localizacoes",
+      component: () => import('pages/localizacoes.vue')
+    },
+  ]
+},
+
+
+// Always leave this as last one,
+// but you can also remove it
   {
     path: '*',
     component: () => import('pages/Error404.vue')
   }
+
+
 ]
 
 export default routes
