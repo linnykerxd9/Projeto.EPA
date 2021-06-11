@@ -60,7 +60,7 @@ const series = [
 const menu = [
   {
     prof:false,
-    link:"#",
+    link:"perfil",
     fundo:"img/garoto.svg",
     texto:"Meu perfil"
   },

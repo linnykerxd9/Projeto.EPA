@@ -146,7 +146,7 @@ const menu = [
   {
     menu:"todos",
     icone:"perm_identity",
-    link:"#",
+    link:"perfil",
     nome:"Perfil"
   },
   {
