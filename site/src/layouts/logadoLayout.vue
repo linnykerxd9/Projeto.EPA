@@ -226,6 +226,9 @@ export default {
 </script>
 
 <style >
+a{
+  text-decoration: none;
+}
 #sectionlayoutLogado .navbar{
   background: #6bb1bb;
 }

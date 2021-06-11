@@ -78,27 +78,27 @@
             </div>
             <!-- email -->
             <div>
-              <h3>Estude ou dê aulas perto de casa, receba novidades no seu email:</h3>
-              <div><input type="digite seu email aqui"></div>
+              <p style="margin:0">Estude ou dê aulas perto de casa, receba novidades no seu email:</p>
+              <div><q-input v-model="text" label="Digite seu email aqui" /></div>
             </div>
             <!-- redes sociais -->
-            <div class="col">
-              <h3>rede sociais</h3>
+            <div class="col sociais">
+              <p>rede sociais</p>
               <div class="alinhar">
                 <ul>
                   <li>
                     <a href="#" target="_blank"
-                      ><img src="img/fig.intagram.png" alt="instagram"
+                      ><img src="img/fig.intagram.png" class="imgSociais" alt="instagram"
                     /></a>
                   </li>
                   <li>
                     <a href="#" target="_blank"
-                      ><img src="img/fig.facebook.png" alt="face"
+                      ><img src="img/fig.facebook.png" class="imgSociais" alt="face"
                     /></a>
                   </li>
                   <li>
                     <a href="#" target="_blank"
-                      ><img src="img/fig.twitter.png" alt="twitter"
+                      ><img src="img/fig.twitter.png" class="imgSociais" alt="twitter"
                     /></a>
                   </li>
                 </ul>
@@ -197,6 +197,7 @@ export default {
       isPwd:true,
       loading:false,
       usuario:null,
+      text:null,
     };
   },
    methods: {
@@ -240,6 +241,9 @@ export default {
 </script>
 
 <style>
+a{
+  text-decoration: none;
+}
 .header {
   width: 100%;
   background: #6bb1bb;
@@ -301,9 +305,8 @@ export default {
   background: #000;
   margin: 14px 0 0px 30px;
 }
-
-.subtitulo:hover::after{
-  background-color: #fff;
+.imgSociais{
+  width:40px;
 }
 .link-footer {
   margin-left: 4%;
@@ -338,6 +341,7 @@ export default {
   width: 100%;
   background: #6bb1bb;
   color: #000;
+  padding-top: 15px;
 }
 
 .parceiros p {
@@ -435,6 +439,15 @@ export default {
 .q-dialog--modal ul li:nth-child(1) a{background-image:url('../../public/img/facebook.png');background-position: 49% 50%;}
 .q-dialog--modal ul li:nth-child(2) a{background-image:url('../../public/img/instagram.png');background-position: 49% 50%;}
 .q-dialog--modal ul li:nth-child(3) a{background-image:url('../../public/img/google-plus.png');background-position: 49% 50%;}
+
+.sociais {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+  
+
 </style>
 
 

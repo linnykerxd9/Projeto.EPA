@@ -47,9 +47,15 @@ const routes = [
     {
       path: "minhas-materias",
       component: () => import('../pages/minhas-materias.vue')
-    }
+    },
+    {
+      path: "perfil",
+      component: () => import('../pages/perfil.vue')
+    },
+
     ]
       },
+
    
 
   // Always leave this as last one,
