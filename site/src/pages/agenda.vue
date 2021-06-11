@@ -1,11 +1,11 @@
 <template>
   <q-page padding>
     <!-- content -->
-  <div style="max-width: 800px; width: 100%;">
+  <div style="max-width: 800px; width: 100%; padding-left: 20px; padding-top: 30px; padding-bottom: 30px; margin: auto;">
     <q-calendar
       v-model="selectedDate"
       view="month"
-      locale="en-us"
+      locale="pt-br"
       :day-height="100"
     >
       <template #day="{ timestamp }">
@@ -102,74 +102,82 @@ export default {
       selectedDate: '',
       events: [
         {
-          title: '1st of the Month',
-          details: 'Everything is funny as long as it is happening to someone else',
+          title: 'Aula Português',
+          details: 'Aluno: Ana, Conjugação de verbos',
           date: getCurrentDay(1),
+          time: '10:00',
+          duration: 60,
           bgcolor: 'orange'
         },
         {
-          title: 'Sisters Birthday',
-          details: 'Buy a nice present',
+          title: 'Aula Matemática',
+          details: 'Aluno: Francisco, multiplicação e divisão',
           date: getCurrentDay(4),
-          bgcolor: 'green',
-          icon: 'fas fa-birthday-cake'
+          time: '10:00',
+          duration: 120,
+          bgcolor: 'green'
         },
         {
-          title: 'Meeting',
-          details: 'Time to pitch my idea to the company',
+          title: 'Aula Português',
+          details: 'Aluna: Carmem',
           date: getCurrentDay(8),
           time: '10:00',
           duration: 120,
-          bgcolor: 'red',
-          icon: 'fas fa-handshake'
+          bgcolor: 'orange'
         },
         {
-          title: 'Lunch',
-          details: 'Company is paying!',
+          title: 'Revisão Matemática',
+          details: 'Período de provas aluno: Thiago',
           date: getCurrentDay(8),
-          time: '11:30',
+          time: '14:00',
           duration: 90,
-          bgcolor: 'teal',
-          icon: 'fas fa-hamburger'
+          bgcolor: 'red'
         },
         {
-          title: 'Visit mom',
-          details: 'Always a nice chat with mom',
-          date: getCurrentDay(20),
-          time: '17:00',
+          title: 'Aula ciências',
+          details: 'Mundo Animal e Vegetal aluna: Sara',
+          date: getCurrentDay(21),
+          time: '16:00',
           duration: 90,
-          bgcolor: 'blue-grey',
-          icon: 'fas fa-car'
+          bgcolor: 'blue'
         },
         {
-          title: 'Conference',
-          details: 'Teaching Javascript 101',
+          title: 'Aula ciências',
+          details: 'Corpo Humano aluno: João',
+          date: getCurrentDay(10),
+          time: '16:00',
+          duration: 90,
+          bgcolor: 'blue'
+        },
+        {
+          title: 'Aula Português',
+          details: 'Concordância Verbal aluno: Antônio',
           date: getCurrentDay(15),
           time: '08:00',
-          duration: 540,
-          bgcolor: 'blue',
-          icon: 'fas fa-chalkboard-teacher'
+          duration: 60,
+          bgcolor: 'orange'
         },
         {
-          title: 'Girlfriend',
-          details: 'Meet GF for dinner at Swanky Restaurant',
+          title: 'Aula Matemática',
+          details: 'Trigonometria aluno: Francisco',
           date: getCurrentDay(15),
-          time: '19:00',
-          duration: 180,
-          bgcolor: 'teal',
-          icon: 'fas fa-utensils'
+          time: '13:00',
+          duration: 120,
+          bgcolor: 'green'
         },
         {
-          title: 'Rowing',
-          details: 'Time for some weekend R&R',
+          title: 'Revisão de Português e Matemática',
+          details: 'Aluna: Carmem',
           date: getCurrentDay(16),
-          bgcolor: 'purple',
+          time: '13:00',
+          duration: 60,
+          bgcolor: 'red',
           icon: 'rowing',
           days: 2
         },
         {
-          title: 'Vacation',
-          details: 'Trails and hikes, going camping! Don\'t forget to bring bear spray!',
+          title: 'Recesso de São João',
+          details: 'Descanso e estudos',
           date: getCurrentDay(22),
           bgcolor: 'purple',
           icon: 'fas fa-plane',
