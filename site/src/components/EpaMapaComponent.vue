@@ -31,8 +31,17 @@
           <div class="text-subtitle1" >
               Sexo: {{professor.sexo}}
           </div>
+          <div class="SobreVoce" v-if="professor.sobre != null">
+              <h5>Sobre mim</h5>
+            <q-input
+            v-model="professor.sobre"
+            filled
+            readonly
+            autogrow
+             />
+          </div>
         </q-card-section>
-        <q-card-section v-if="materias.length != 0">
+        <q-card-section v-if="materias.length != 0"  style="margin-top:10px;">
           <h5>Minhas Materias:</h5>
                   <q-separator />
           <EpaMateriasComponent v-for="materia in materias"
