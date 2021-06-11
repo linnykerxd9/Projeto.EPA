@@ -78,7 +78,7 @@ const menu = [
   },
   {
     prof:false,
-    link:"#",
+    link:"agenda",
     fundo:"img/calendario.svg",
     texto:"Minha agenda"
   },

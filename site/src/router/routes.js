@@ -8,11 +8,7 @@ const routes = [
       { path: '', component: () => import('pages/Index.vue') },
     {
       path:'perguntasFrequentes',component: () => import('pages/perguntasFrequentes')
-    },
-     {
-    path: "/agenda",
-    component: () => import('../pages/agenda.vue')
-    },
+    }
   ]},
   {
     path: '/cadastro',
@@ -52,6 +48,10 @@ const routes = [
     {
       path:"localizacoes",
       component: () => import('pages/localizacoes.vue')
+    },
+    {
+    path: "agenda",
+    component: () => import('../pages/agenda.vue')
     },
   ]
 },
