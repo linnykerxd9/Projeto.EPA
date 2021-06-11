@@ -223,9 +223,6 @@ export default {
   beforeMount(){
     this.validacao(this.id);
   },
-  mounted() {
-    console.log("teste")
-  },
 }
 </script>
 

@@ -95,12 +95,11 @@
 </template>
 
 <script>
-  const usuario= this.$q.sessionStorage.getItem("usuario")
   export default{
     data() {
       return {
         newMessage: null,
-        usuario: usuario.nome_completo.split(' '),
+        usuario:null,
         messages: [
           {
             text:'Oi Prof Pocahontas, bom dia!',
@@ -109,8 +108,8 @@
             tempo:"15 minutos"
           },
           {
-            text:`Bom dia ${usuario.nome[0]}, como posso ajuda-lo?`,
-            from:'ele(a)',
+            text:`Bom dia, como posso ajuda-lo?`,
+            from:'Pocahontas',
             foto:'https://cdn.quasar.dev/img/avatar3.jpg',
             tempo:"9 minutos"
           },
@@ -153,7 +152,7 @@
        }
         this.newMessage=null;
       },
-    }
+    },
   }
 
 
