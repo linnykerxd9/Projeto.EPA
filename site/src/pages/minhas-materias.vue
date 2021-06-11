@@ -256,7 +256,7 @@ export default {
   flex-direction: column;
 }
 #sectionMinhasMaterias .meusCardsContent .meusCardsColumn{
-    width: 50%;
+    min-width: 50%;
     display: flex;
     flex-direction: column;
     align-self: center;
