@@ -38,6 +38,7 @@
           <EpaMateriasComponent v-for="materia in materias"
                                 :key="materia.id"
                                 :nome="materia.Materium.nome"
+                                :serie="materia.Materium.serie"
                                 :valor="materia.Materium.valorMateria"
                                 :tipo="materia.Materium.escolaridade"
           ></EpaMateriasComponent>

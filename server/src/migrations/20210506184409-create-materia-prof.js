@@ -12,6 +12,7 @@ module.exports = {
         field: "idMateria",
         allowNull:false,
         type: Sequelize.STRING,
+        onDelete: 'CASCADE',
         references:{
       model: "Materia",
           key:"id",
@@ -21,6 +22,7 @@ module.exports = {
         field: "idProfessor",
         allowNull: false,
         type: Sequelize.STRING,
+        onDelete: 'CASCADE',
         references: {
           model:"Professors",
           key:"id"
