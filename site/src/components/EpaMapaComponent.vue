@@ -54,7 +54,7 @@
         </q-card-section>
         <q-separator />
         <q-card-actions align="right">
-          <q-btn v-close-popup flat color="primary" label="Chat" />
+          <q-btn v-close-popup flat color="primary" label="Chat" to="chat"/>
         </q-card-actions>
       </q-card>
     </q-dialog>
