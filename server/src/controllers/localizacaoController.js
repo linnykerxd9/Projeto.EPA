@@ -12,18 +12,17 @@ exports.createOne = (req, res) => {
     
     config.findAll({where: {id:1}})
     .then(config => {
+        var preLocalizacao = config[0].dataValues.preLocalizacao;
+        var ultimoIdLocalizacao = config[0].dataValues.ultimoIdLocalizacao;
+        var ultimoIdLocalizacao = ultimoIdLocalizacao + 1;
+        var id = `${preLocalizacao}-${ultimoIdLocalizacao}`;
    
-        var preLocalizacoes = config[0].dataValues.preLocalizacoes;
-        var  ultimoIdLocalizacoes = config[0].dataValues.ultimoIdLocalizacoes;
-        var ultimoIdLocalizacoes = ultimoIdLocalizacoes + 1;
-        var id = `${preALocalizacoes}-${ultimoIdLocalizacoes}`;
-   
-        updateIdLocalizacoes(ultimoIdLocalizacoes);
+        updateIdLocalizacoes(ultimoIdLocalizacao);
     Localizacoes.create({  id,longitude,latitude,situacao,idProfessor })
     .then(localizacoes => res.send(localizacoes))
-    .catch(err => res.send(err))
+    .catch(err => console.log(err))
 })
-.catch(err => res.send(err))
+.catch(err => console.log(err))
 }
 exports.listOne = (req,res) => {
 	Localizacoes.findAll(
@@ -37,6 +36,6 @@ exports.listOne = (req,res) => {
 	.then(localizacoes => res.send(localizacoes))
     .catch(err => res.send(err))
 }
-updateIdLocalizacoes = (idLocalizacoes) => {
-     config.update({ultimoIdLocalizacoes: idLocalizacoes},{where:{id:1}})
+updateIdLocalizacoes = (ultimoIdLocalizacao) => {
+     config.update({ultimoIdLocalizacao: ultimoIdLocalizacao},{where:{id:1}})
 }

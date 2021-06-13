@@ -17,8 +17,8 @@
 
     <q-dialog v-model="perfil" v-if="professor != null">
       <q-card class="my-card" style="border-radius:11px;">
-        <q-img src="img/foto-perfil.jpg" />
-
+        <q-img src="https://cdn.quasar.dev/img/avatar3.jpg" v-if="professor.id == 'PRO-1'"/>
+        <q-img src="img/foto-perfil.jpg" v-else/>
         <q-card-section>
           <div class="row no-wrap items-center">
             <div class="col text-h6 ellipsis" style="margin-top:10px;">

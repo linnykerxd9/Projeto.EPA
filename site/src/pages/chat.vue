@@ -45,7 +45,7 @@
           <div class="flex column">
             <div class="chatAtual">
                <q-list separator bordered style="display: flex; justify-content: space-between;">
-          <q-item clickable v-ripple @click="mostrarMateria('PRO-002')" style="  width: 70%;">
+          <q-item clickable v-ripple @click="mostrarMateria('PRO-1')" style="  width: 70%;">
           <q-item-section avatar>
             <q-avatar >
               <img src="https://cdn.quasar.dev/img/avatar3.jpg" />
@@ -268,7 +268,7 @@ import { server } from 'boot/axios'
           this.mostrarPerfil = !this.mostrarPerfil;
       },
       chamarAula(){
-      server.get(`materiaProf/PRO-002`)
+      server.get(`materiaProf/PRO-1`)
           .then(materia => { this.materias = materia.data });
         this.iniciarAula = true;
       },
