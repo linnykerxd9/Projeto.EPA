@@ -9,9 +9,9 @@
         </q-toolbar-title>
         <div class="header_menu grid-12">
           <ul>
-            <li><a href="#">Sobre</a></li>
+            <li><a href="#sobre">Sobre</a></li>
             <li><span class="dot"></span><a href="#">Como Começar</a></li>
-            <li><span class="dot"></span><a href="#">Contato</a></li>
+            <li><span class="dot"></span><a href="#footer">Contato</a></li>
             <li><span class="dot subtitulo"></span><a href="#"  @click="modalLogin = true">Login</a></li>
           </ul>
         </div>
@@ -22,7 +22,7 @@
       <router-view />
     </q-page-container>
 
-    <q-footer class="bg-grey-8 text-white">
+    <q-footer class="bg-grey-8 text-white" id="footer">
       <div class="footer">
         <!-- <q-toolbar> </q-toolbar> -->
 
@@ -55,7 +55,7 @@
                   />
                 </div>
                 <div class="link-footer">
-                  <a href="#">
+                  <a href="/#/perguntasFrequentes">
                     <p class="linha">Perguntas frequentes</p>
                   </a>
                 </div>
@@ -451,7 +451,7 @@ a{
   align-items: center;
   justify-content: center;
 }
-  
+
 
 </style>
 
