@@ -4,7 +4,7 @@ Seja bem vindo ao GitHub da segunda versão do EPA (Ensino por amor), essa segun
 
 
 
-Video de apresentação do produto final da EPA:
+#### Video de apresentação do produto final da EPA:
 
 https://www.youtube.com/watch?v=tu257Bo2RrE
 
@@ -32,4 +32,4 @@ o EPA surgiu da dificuldade de se encontrar professores de reforço perto de sua
 
 ## Página inicial:
 
-![image-20210618132604818](C:\Users\Viviane\AppData\Roaming\Typora\typora-user-images\image-20210618132604818.png)
+![home](C:\Users\Viviane\Downloads\home.jpg)
